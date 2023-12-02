@@ -1,0 +1,45 @@
+<div class="container mt-4">
+  <div class="table-responsive">
+    <table class="table table-striped table-bordered table-hover text-center">
+      <thead class="table-dark">
+        <tr>
+          <th>Id</th>
+          <th>Nombre</th>
+          <th>Email</th>
+          <th>Contraseña</th>
+          <th>Rol</th>
+          <th>Tema Interfaz</th>
+          <th>Idioma</th>
+          <th>Último Acceso</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>{{ usuarioDeLista.id}}</td>
+          <td>{{ usuarioDeLista.nombre }}</td>
+          <td>{{ usuarioDeLista.email }}</td>
+          <td>{{ usuarioDeLista.contrasena }}</td>
+          <td>{{ usuarioDeLista.rol }}</td>
+          <td>{{ usuarioDeLista.tema_interfaz }}</td>
+          <td>{{ usuarioDeLista.idioma }}</td>
+          <td>{{ usuarioDeLista.ultimo_acceso }}</td>
+          <td>
+            <a [routerLink]="['/actualiza-usuario', usuarioDeLista.id]" >Editar</a>
+            
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div style="margin-top: 20px;"></div>
+
+  <app-caracteristicas-usuario (caracteristicasEmpleados)="agregarCaracteristicas($event)"></app-caracteristicas-usuario>
+
+  <div style="margin-top: 20px;"></div>
+
+  <ul style="list-style: circle; margin-top: 20px;">
+    <li *ngFor="let caracteristica of arrayCaracteristicas">{{ caracteristica }}</li>
+  </ul>
+</div>

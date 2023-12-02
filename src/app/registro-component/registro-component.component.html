@@ -1,0 +1,43 @@
+<form [formGroup]="registroForm" class="custom-form" method="POST" (ngSubmit)="registrar()">
+  <h1 class="mb-4">Register</h1>
+
+  <!-- Username Field -->
+  <div class="mb-3">
+    <label for="nombre" class="form-label">Nombre</label>
+    <input type="text" formControlName="nombre" class="form-control" placeholder="Nombre">
+    <div *ngIf="registroForm.get('nombre')?.hasError('required') && registroForm.get('nombre')?.touched"
+         class="error-message">Nombre es obligatorio</div>
+    <div *ngIf="registroForm.get('nombre')?.hasError('minlength') && registroForm.get('nombre')?.touched"
+         class="error-message">Nombre debe tener al menos 6 caracteres</div>
+    <div *ngIf="registroForm.get('nombre')?.hasError('pattern') && registroForm.get('nombre')?.touched"
+         class="error-message">Nombre solo puede contener letras y números</div>
+  </div>
+
+  <!-- Email Field -->
+  <div class="mb-3">
+    <label for="email" class="form-label">Email</label>
+    <input type="email" formControlName="email" class="form-control" placeholder="Email">
+    <div *ngIf="registroForm.get('email')?.hasError('required') && registroForm.get('email')?.touched"
+         class="error-message">Email es obligatorio</div>
+    <div *ngIf="registroForm.get('email')?.hasError('email') && registroForm.get('email')?.touched"
+         class="error-message">Introduce un email válido</div>
+    <div *ngIf="registroForm.get('email')?.hasError('pattern') && registroForm.get('email')?.touched"
+         class="error-message">Solo se admiten correos de Gmail</div>
+  </div>
+
+  <!-- Contraseña Field -->
+  <div class="mb-3">
+    <label for="contrasena" class="form-label">Contraseña</label>
+    <input type="password" formControlName="contrasena" class="form-control" placeholder="Contraseña">
+    <div *ngIf="registroForm.get('contrasena')?.hasError('required') && registroForm.get('contrasena')?.touched"
+         class="error-message">Contraseña es obligatoria</div>
+    <div *ngIf="registroForm.get('contrasena')?.hasError('minlength') && registroForm.get('contrasena')?.touched"
+         class="error-message">Contraseña debe tener al menos 6 caracteres</div>
+    <div *ngIf="registroForm.get('contrasena')?.hasError('pattern') && registroForm.get('contrasena')?.touched"
+         class="error-message">Contraseña debe contener números y letras uno de ellos caracter especial</div>
+  </div>
+  <button type="submit" class="btn btn-primary">Register</button>
+</form>
+<div *ngIf="mensajeError" class="error-message">
+     {{ mensajeError }}
+   </div>

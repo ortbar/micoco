@@ -1,0 +1,55 @@
+<p>actualiza-component works!</p>
+
+<div class="container">
+    <div class="col">
+      <h1 class="text-center">{{title}}</h1>
+    </div>
+    <br><br>
+  
+    <form class="form-inline d-flex justify-content-center">
+  
+    
+      <div class="form-group mx-2">
+        <label for="nombre" class="mr-2">Nombre</label>
+        <input type="text" name="nombre" id="nombre" placeholder="Nombre" class="form-control" [(ngModel)]="cuadroNombre">
+      </div>
+  
+      <div class="form-group mx-2">
+        <label for="email" class="mr-2">Email</label>
+        <input type="email" name="email" id="email" placeholder="Email" class="form-control" [(ngModel)]="cuadroEmail">
+      </div>
+  
+      <div class="form-group mx-2">
+        <label for="contrasena" class="mr-2">Contraseña</label>
+        <input type="password" name="contrasena" id="contrasena" placeholder="Contraseña" class="form-control" [(ngModel)]="cuadroContrasena">
+      </div>
+  
+      <div class="form-group mx-2">
+        <label for="rol" class="mr-2">Rol</label>
+        <input type="text" name="rol" id="rol" placeholder="Rol" class="form-control" [(ngModel)]="cuadroRol">
+      </div>
+  
+      <div class="form-group mx-2">
+        <label for="temainterfaz" class="mr-2">Tema Interfaz</label>
+        <input type="text" name="temainterfaz" id="temainterfaz" placeholder="Tema Interfaz" class="form-control" [(ngModel)]="cuadroTema_interfaz">
+      </div>
+  
+      <div class="form-group mx-2">
+        <label for="idioma" class="mr-2">Idioma</label>
+        <input type="text" name="idioma" id="idioma" placeholder="Idioma" class="form-control" [(ngModel)]="cuadroIdioma">
+      </div>
+  
+      <div class="form-group mx-2">
+        <label for="ultimo_acceso" class="mr-2">Último Acceso</label>
+        <input type="text" name="ultimo_acceso" id="ultimo_acceso" placeholder="Último Acceso" class="form-control" [(ngModel)]="cuadroUltimo_acceso">
+      </div>
+    </form>
+    <div class="d-flex justify-content-center mt-3">
+      <button type="submit" class="btn btn-primary" (click)="actualizarUsuario()">Actualizar</button>
+
+    </div>
+    <div class="d-flex justify-content-center mt-3">
+      <button type="submit" class="btn btn-primary" (click)="eliminarUsuario()">Elininar</button>
+      
+    </div>
+  </div>

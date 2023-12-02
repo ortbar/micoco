@@ -1,0 +1,6 @@
+
+.custom-link {
+    color: #007bff; /* Cambia el color del enlace según tus preferencias */
+    text-decoration: none; /* Elimina el subrayado predeterminado */
+    cursor: pointer; /* Cambia el cursor al pasar sobre el enlace */
+  }
