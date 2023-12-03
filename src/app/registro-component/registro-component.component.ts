@@ -28,25 +28,28 @@ export class RegistroComponentComponent {
     if (this.registroForm?.valid) {
       const { nombre, email, contrasena } = this.registroForm.value;
       const newUser = new Usuario(nombre, email, contrasena, 'jugador', '', '', new Date());
-    
+  
       this.servicio.registerUser(newUser).subscribe({
-        next: (response:ApiResponse) => {
+        next: (response: ApiResponse) => {
+          debugger;
           if (response.success) {
-            console.log('Usuario registrado con éxito:', response.mensaje);
+            console.log( response.mensaje);
             // Puedes redirigir o mostrar un mensaje de éxito aquí
           } else {
             console.error('Error al registrar usuario:', response.mensaje);
-            // Puedes mostrar un mensaje de error al usuario aquí
-            // Por ejemplo, puedes actualizar una propiedad en tu componente
-            // para mostrar un mensaje específico en el HTML.
+            // Actualiza una propiedad en tu componente para mostrar el mensaje en el HTML
             this.mensajeError = response.mensaje;
+            
+            // Agrega una lógica adicional para manejar el caso específico de violación de clave única
+            if (response.error  && response.error.code === 'Duplicate entry') {
+              // Muestra un mensaje más específico para el usuario
+              this.mensajeError = 'El correo electrónico ya está registrado. Por favor, utiliza otro correo electrónico.';
+            }
           }
         },
         error: (error) => {
           console.error('Error al registrar usuario:', error);
-          // Puedes mostrar un mensaje de error al usuario aquí
-          // Por ejemplo, puedes actualizar una propiedad en tu componente
-          // para mostrar un mensaje genérico en el HTML.
+          // Actualiza una propiedad en tu componente para mostrar un mensaje genérico en el HTML
           this.mensajeError = 'Error en el registro. Inténtalo de nuevo más tarde.';
         }
       });

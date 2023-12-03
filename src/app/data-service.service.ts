@@ -80,16 +80,22 @@ export class DataServiceService {
   
   registerUser(user: Usuario): Observable<ApiResponse> {
     const url = `${this.apiUrl}/registro`;
-
+  
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': 'http://localhost:4200'
     });
-
+  
     return this.http.post<ApiResponse>(url, user, { headers }).pipe(
       catchError((error) => {
         console.error('Error en la solicitud:', error);
-        return throwError(() => new Error('Ocurrió un error en la solicitud.'));
+  
+        // Verifica si el error proviene del servidor y contiene un objeto de error
+        if (error.error && error.error.error && error.error.error.message) {
+          return throwError(() => new Error(error.error.error.message));
+        } else {
+          return throwError(() => new Error('Ocurrió un error en la solicitud.'));
+        }
       })
     );
   }

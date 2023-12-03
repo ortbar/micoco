@@ -79,21 +79,71 @@ router.post('/registro', async (req, res) => {
   try {
     const { nombre, email, contrasena } = req.body;
 
-    const result = await connection.query('SELECT * FROM usuario WHERE email = ?', [email]);
-    const rows = result[0];
-    
-    if (rows && rows.length > 0) {
-      return res.status(400).json({ mensaje: 'El usuario ya existe', success: true });
+    let error = [];
+
+    if (!nombre || !email || !contrasena) {
+      error.push({ mensaje: 'Por favor ingrese todos los campos' });
     }
 
-    const hashedPassword = await bcrypt.hash(contrasena, 10);
+    if (contrasena.length < 6) {
+      error.push({ mensaje: 'La contraseña debe tener al menos 6 caracteres' });
+    }
 
-    await connection.query(
-      'INSERT INTO usuario (nombre, email, contrasena, rol) VALUES (?, ?, ?, ?)',
-      [nombre, email, hashedPassword, 'jugador']
-    );
+    if (error.length > 0) {
+      return res.status(400).json({ mensaje: error, success: false });
+    }
 
-    res.status(200).json({ mensaje: 'Usuario registrado con éxito', success: true });
+    connection.query('SELECT COUNT(*) FROM usuario WHERE email = ?', [email], (err, result) => {
+      if (err) throw err;
+
+      const rows = result[0]['COUNT(*)'];
+
+      if (rows && rows > 0) {
+        return res.status(400).json({ mensaje: 'El usuario ya existe', success: false });
+      }else{
+
+        bcrypt.hash(contrasena, 10)
+        .then(hashedPassword => {
+          connection.query(
+            'INSERT INTO usuario (nombre, email, contrasena, rol) VALUES (?, ?, ?, ?)',
+            [nombre, email, hashedPassword, 'jugador']
+          );
+      
+          res.status(201).json({ mensaje: 'Usuario registrado con éxsito', success: true });
+        })
+        .catch(err => {
+          // Maneja cualquier error que pueda ocurrir durante el hashing
+          console.error(err);
+        });
+
+        // const hashedPassword = bcrypt.hash(contrasena, 10);
+
+      //   connection.query(
+      //    'INSERT INTO usuario (nombre, email, contrasena, rol) VALUES (?, ?, ?, ?)',
+      //    [nombre, email, hashedPassword, 'jugador']
+      //  );
+   
+      //  res.status(201).json({ mensaje: 'Usuario registrado con éxsito', success: true });
+      }
+
+
+
+    });
+
+
+    // if (rows && rows > 0) {
+    //   return res.status(200).json({ mensaje: 'El usuario ya existe', success: false });
+      
+    // }
+
+    // const hashedPassword = await bcrypt.hash(contrasena, 10);
+
+    //  connection.query(
+    //   'INSERT INTO usuario (nombre, email, contrasena, rol) VALUES (?, ?, ?, ?)',
+    //   [nombre, email, hashedPassword, 'jugador']
+    // );
+
+    // res.status(200).json({ mensaje: 'Usuario registrado con éxsito', success: true });
   } catch (error) {
     console.error('Error al registrar usuario:', error);
     res.status(500).json({ mensaje: 'Error interno del servidor al registrar usuario', success: false });
