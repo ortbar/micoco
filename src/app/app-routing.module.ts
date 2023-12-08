@@ -7,8 +7,8 @@ import { ActualizaComponentComponent } from './actualiza-component/actualiza-com
 import { RegistroComponentComponent } from './registro-component/registro-component.component';
 
 const routes: Routes = [
-  {path:'', component:HomeComponentComponent},
-  // {path:'', component:RegistroComponentComponent},
+  // {path:'', component:HomeComponentComponent},
+  {path:'', component:RegistroComponentComponent},
   { path: 'usuarios', component: AppComponent},
   { path: 'estadisticas', component: EstadisticasComponentComponent },
   { path: 'actualiza-usuario/:id', component: ActualizaComponentComponent },

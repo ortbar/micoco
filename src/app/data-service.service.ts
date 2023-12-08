@@ -113,10 +113,10 @@ export class DataServiceService {
 
 
 
-  loginUser(credentials: { email: string; contrasena: string }): Observable<any> {
-    const url = `${this.apiUrl}/login`; // Ajusta la URL según tu backend
-    return this.http.post<any>(url, credentials);
-  }
+  // loginUser(credentials: { email: string; contrasena: string }): Observable<any> {
+  //   const url = `${this.apiUrl}/login`; // Ajusta la URL según tu backend
+  //   return this.http.post<any>(url, credentials);
+  // }
 
 
 
