@@ -61,10 +61,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "micoco:build:production"
+              "buildTarget": "micoco:build:production"
             },
             "development": {
-              "browserTarget": "micoco:build:development"
+              "buildTarget": "micoco:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -72,7 +72,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "micoco:build"
+            "buildTarget": "micoco:build"
           }
         },
         "test": {
