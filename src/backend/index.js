@@ -2,7 +2,6 @@ const express = require('express');
 const mysql = require('mysql');
 const cors = require('cors');
 const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
 const app = express();
 const port = 3000;
 const connection = mysql.createConnection({
@@ -101,30 +100,23 @@ router.post('/registro', async (req, res) => {
 
       if (rows && rows > 0) {
         return res.status(400).json({ mensaje: 'El usuario ya existe', success: false });
-      }else{
+      } else {
 
         bcrypt.hash(contrasena, 10)
-        .then(hashedPassword => {
-          connection.query(
-            'INSERT INTO usuario (nombre, email, contrasena, rol) VALUES (?, ?, ?, ?)',
-            [nombre, email, hashedPassword, 'jugador']
-          );
-      
-          res.status(201).json({ mensaje: 'Usuario registrado con éxsito', success: true });
-        })
-        .catch(err => {
-          // Maneja cualquier error que pueda ocurrir durante el hashing
-          console.error(err);
-        });
+          .then(hashedPassword => {
+            connection.query(
+              'INSERT INTO usuario (nombre, email, contrasena, rol) VALUES (?, ?, ?, ?)',
+              [nombre, email, hashedPassword, 'jugador']
+            );
 
-        // const hashedPassword = bcrypt.hash(contrasena, 10);
+            res.status(201).json({ mensaje: 'Usuario registrado con éxsito', success: true });
+          })
+          .catch(err => {
+            // Maneja cualquier error que pueda ocurrir durante el hashing
+            console.error(err);
+          });
 
-      //   connection.query(
-      //    'INSERT INTO usuario (nombre, email, contrasena, rol) VALUES (?, ?, ?, ?)',
-      //    [nombre, email, hashedPassword, 'jugador']
-      //  );
-   
-      //  res.status(201).json({ mensaje: 'Usuario registrado con éxsito', success: true });
+
       }
 
 
@@ -132,19 +124,8 @@ router.post('/registro', async (req, res) => {
     });
 
 
-    // if (rows && rows > 0) {
-    //   return res.status(200).json({ mensaje: 'El usuario ya existe', success: false });
-      
-    // }
 
-    // const hashedPassword = await bcrypt.hash(contrasena, 10);
 
-    //  connection.query(
-    //   'INSERT INTO usuario (nombre, email, contrasena, rol) VALUES (?, ?, ?, ?)',
-    //   [nombre, email, hashedPassword, 'jugador']
-    // );
-
-    // res.status(200).json({ mensaje: 'Usuario registrado con éxsito', success: true });
   } catch (error) {
     console.error('Error al registrar usuario:', error);
     res.status(500).json({ mensaje: 'Error interno del servidor al registrar usuario', success: false });

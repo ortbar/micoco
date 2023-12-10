@@ -13,28 +13,31 @@ import { EstadisticasComponentComponent } from './estadisticas-component/estadis
 import { RouterModule } from '@angular/router';
 import { ActualizaComponentComponent } from './actualiza-component/actualiza-component.component';
 import { RegistroComponentComponent } from './registro-component/registro-component.component';
+import { AuthService } from './auth.service';
+import { LoginComponentComponent } from "./login-component/login-component.component";
 
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    UsuarioComponentComponent,
-    CaracteristicasUsuarioComponent,
-    HomeComponentComponent,
-    EstadisticasComponentComponent,
-    ActualizaComponentComponent,
-    RegistroComponentComponent,
-   
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    FormsModule,
-    RouterModule,
-    ReactiveFormsModule
-  ],
-  providers: [DataServiceService],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        UsuarioComponentComponent,
+        CaracteristicasUsuarioComponent,
+        HomeComponentComponent,
+        EstadisticasComponentComponent,
+        ActualizaComponentComponent,
+        RegistroComponentComponent,
+        LoginComponentComponent
+    ],
+    providers: [DataServiceService, AuthService],
+    bootstrap: [AppComponent],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        HttpClientModule,
+        FormsModule,
+        RouterModule,
+        ReactiveFormsModule,
+        LoginComponentComponent,
+    ]
 })
 export class AppModule { }
