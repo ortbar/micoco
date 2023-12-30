@@ -6,19 +6,18 @@ import { AuthService } from './auth.service';
 @Injectable({
   providedIn: 'root',
 })
-export class AuthGuard implements CanActivate {
+export class AuthGuard  {
 
   constructor(private authService: AuthService, private router: Router) {}
 
   canActivate(
     next: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+    state: RouterStateSnapshot
+  ): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
 
     if (this.authService.isAuthenticated()) {
       return true;
     }
-
-    // Si el usuario no está autenticado, redirige a la página de inicio de sesión
-    return this.router.parseUrl('/login');
+    return this.router.parseUrl('');
   }
 }

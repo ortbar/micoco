@@ -29,8 +29,6 @@ export class AuthService {
     localStorage.setItem('nombre', user.nombre);
     localStorage.setItem('email', user.email);
     localStorage.setItem('rol', user.rol);
-
-
   }
 
   public getToken(): string | null {
@@ -43,6 +41,11 @@ export class AuthService {
 
   
 
+  public removeUser(){
+    localStorage.removeItem('nombre');
+    localStorage.removeItem('email');
+    localStorage.removeItem('rol');
+  }
   
 
   public iniciarSesion(email: string, contrasena: string): Observable<Token> {
@@ -62,6 +65,12 @@ export class AuthService {
   );
 
   
+  }
+
+  cerrrarSesion() {
+    this.removeToken();
+    this.removeUser;
+    this.router.navigate(['']);
   }
 
 

@@ -4,6 +4,7 @@ import { AuthService } from '../auth.service';
 import { Token } from './auth.interface';
 import { Observable, catchError, map, throwError } from 'rxjs';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-login-component',
   templateUrl: './login-component.component.html',
@@ -14,7 +15,7 @@ export class LoginComponentComponent {
   loginForm: FormGroup;
   mensajeError: string="";
 
-  constructor(private fb: FormBuilder, private servicio :AuthService ) {}
+  constructor(private fb: FormBuilder, private servicio :AuthService,router:Router ) {}
 
   ngOnInit(): void {
     this.loginForm = this.fb.group({

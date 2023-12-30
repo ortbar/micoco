@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { AuthService } from './auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -6,6 +8,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+
+  constructor(private authService: AuthService, private router: Router) {}
+
   // title = 'Cocowin'; 
   
   // cuadroNombre: string = '';
@@ -18,7 +23,6 @@ export class AppComponent {
   //array vacio para almacenar los datos que vienen de la
   // usuarios: Usuario[] = [];
 
-  constructor() {}
 
   ngOnInit() {
     // this.getUsuarios();
@@ -60,7 +64,11 @@ export class AppComponent {
   // }
 
 
-
+  cerrrarSesion() {
+    this.authService.removeToken();
+    this.authService.removeUser();
+    this.router.navigate(['']);
+  }
 
   
 }
