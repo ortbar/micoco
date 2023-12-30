@@ -37,6 +37,7 @@ export class LoginComponentComponent {
         next: (response: Token) => {
           console.log(response)
           this.servicio.setToken(response.token);
+          this.servicio.setUser(response.user);
           console.log('Inicio de sesión exitoso');
         },
         error: (error: any) => {

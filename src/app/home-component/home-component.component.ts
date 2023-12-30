@@ -11,6 +11,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 export class HomeComponentComponent {
   constructor(private userService: DataServiceService) {}
 
+  bienvenidas = "";
 
   title = 'Cocowin'; 
   cuadroNombre: string = '';
@@ -57,10 +58,15 @@ export class HomeComponentComponent {
     });
   }
 
-  
+  bienvenida () {
+    this.bienvenidas = localStorage.getItem('nombre')? "Bienvenido " + localStorage.getItem('nombre') : "Bienvenido";
+    
+  }
+
   
   ngOnInit() {
     this.getUsuarios();
+    this.bienvenida();
   }
 
 }

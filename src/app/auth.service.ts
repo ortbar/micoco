@@ -2,15 +2,16 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Observable, catchError, map, throwError } from 'rxjs';
-import { Token } from './login-component/auth.interface';
-
+import { Token, User } from './login-component/auth.interface';
+import { Router } from '@angular/router';
+import { tap } from 'rxjs/operators';
 
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  constructor(public jwtHelper: JwtHelperService, private http: HttpClient) {}
+  constructor(public jwtHelper: JwtHelperService, private http: HttpClient,private router: Router) {}
 
   private apiUrl = 'http://localhost:3000';
 
@@ -21,8 +22,15 @@ export class AuthService {
   }
 
   public setToken(token: string): void {
-    console.log("hey:", token)
     localStorage.setItem('token', token);
+  }
+
+  public setUser(user: User){
+    localStorage.setItem('nombre', user.nombre);
+    localStorage.setItem('email', user.email);
+    localStorage.setItem('rol', user.rol);
+
+
   }
 
   public getToken(): string | null {
@@ -47,8 +55,13 @@ export class AuthService {
       // Manejar el error aquí (por ejemplo, registrándolo o mostrando un mensaje al usuario)
       console.error('Error en la solicitud de inicio de sesión', error);
       throw error; // Propagar el error para que el componente que llama pueda manejarlo si es necesario
-    })
+    }),
+    tap(() => this.router.navigate(['dashboard']))
+
+
   );
+
+  
   }
 
 
