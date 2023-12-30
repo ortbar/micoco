@@ -4,7 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DataServiceService } from './data-service.service';
-
+import { JwtHelperService, JwtModule } from '@auth0/angular-jwt';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UsuarioComponentComponent } from './usuario-component/usuario-component.component';
 import { CaracteristicasUsuarioComponent } from './caracteristicas-usuario/caracteristicas-usuario.component';
@@ -26,7 +26,8 @@ import { LoginComponentComponent } from "./login-component/login-component.compo
         EstadisticasComponentComponent,
         ActualizaComponentComponent,
         RegistroComponentComponent,
-        LoginComponentComponent
+        LoginComponentComponent,
+
     ],
     providers: [DataServiceService, AuthService],
     bootstrap: [AppComponent],
@@ -37,7 +38,16 @@ import { LoginComponentComponent } from "./login-component/login-component.compo
         FormsModule,
         RouterModule,
         ReactiveFormsModule,
-        LoginComponentComponent,
+        JwtModule.forRoot({
+            config: {
+              tokenGetter: () => {
+                return localStorage.getItem('token');
+              },
+              // allowedDomains: ['localhost:4200'],  // Ajusta esto según tu configuración
+              // disallowedRoutes: ['http://localhost:3000/iniciar-sesion'],  // Ajusta esto según tu configuración
+            },
+          })
+        
     ]
 })
 export class AppModule { }

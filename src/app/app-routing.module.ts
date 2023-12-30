@@ -9,13 +9,13 @@ import { LoginComponentComponent } from './login-component/login-component.compo
 import { AuthGuard } from './auth.guard';
 
 const routes: Routes = [
-  {path:'', component:HomeComponentComponent},
-  // {path:'', component:RegistroComponentComponent},
+  // {path:'', component:HomeComponentComponent},
+  
   { path: 'usuarios', component: AppComponent},
   { path: 'estadisticas', component: EstadisticasComponentComponent },
   { path: 'actualiza-usuario/:id', component: ActualizaComponentComponent },
   { path: 'registro', component: RegistroComponentComponent},
-  { path: 'login', component: LoginComponentComponent },
+  { path: '', component: LoginComponentComponent },
 
 
   

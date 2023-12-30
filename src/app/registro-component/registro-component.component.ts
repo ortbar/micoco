@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DataServiceService } from '../data-service.service';
 import { Usuario } from '../user.model';
 import { ApiResponse } from './api-response.interface';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-registro-component',
@@ -14,7 +15,7 @@ export class RegistroComponentComponent {
   registroForm: FormGroup;
   mensajeError: string="";
 
-  constructor(private fb: FormBuilder, private servicio: DataServiceService) {}
+  constructor(private fb: FormBuilder, private servicio: DataServiceService, private router: Router) {}
 
   ngOnInit(): void {
     this.registroForm = this.fb.group({
@@ -31,7 +32,7 @@ export class RegistroComponentComponent {
   
       this.servicio.registerUser(newUser).subscribe({
         next: (response: ApiResponse) => {
-          debugger;
+        
           if (response.success) {
             console.log( response.mensaje);
             // Puedes redirigir o mostrar un mensaje de éxito aquí
@@ -55,6 +56,8 @@ export class RegistroComponentComponent {
       });
     }
   }
+
+  
 }
 
   

@@ -2,8 +2,13 @@ const express = require('express');
 const mysql = require('mysql');
 const cors = require('cors');
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+
+
 const app = express();
 const port = 3000;
+
+
 const connection = mysql.createConnection({
   host: 'localhost',
   user: 'root',
@@ -21,6 +26,7 @@ const corsOptions = {
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   credentials: true,
   optionsSuccessStatus: 204,
+
 };
 
 app.use(cors(corsOptions));
@@ -129,6 +135,50 @@ router.post('/registro', async (req, res) => {
   } catch (error) {
     console.error('Error al registrar usuario:', error);
     res.status(500).json({ mensaje: 'Error interno del servidor al registrar usuario', success: false });
+  }
+});
+
+router.post('/iniciar-sesion', async (req, res) => {
+  console.log('Solicitud de inicio de sesión recibida');
+  try {
+    const { email, contrasena } = req.body;
+    console.log('Antes de la consulta a la base de datos');
+    // Realiza la consulta para obtener el usuario con el email dado desde la base de datos
+    connection.query('SELECT * FROM usuario WHERE email = ?', [email], async (err, results) => {
+      console.log('Después de la consulta a la base de datos');
+      
+      if (err) {
+        console.error('Error en la consulta a la base de datos:', err);
+        return res.status(500).json({ mensaje: 'Error interno del servidor' });
+      }
+
+      console.log(results)
+
+      if (results[0].length === 0) {
+        console.log('Usuario no encontrado');
+        return res.status(401).json({ mensaje: 'Credenciales incorrectas' });
+      }
+
+      const user = results[0];
+
+      // Compara la contraseña proporcionada con el hash almacenado en la base de datos
+      const contrasenaValida = await bcrypt.compare(contrasena, user.contrasena);
+
+      if (!contrasenaValida) {
+        console.log('Contraseña no válida');
+        return res.status(401).json({ mensaje: 'Credenciales incorrectas' });
+      }
+
+      // Genera un token JWT
+      const token = jwt.sign({ userId: user.id, email: user.email }, 'tuSecreto', { expiresIn: '1h' });
+
+      console.log('Inicio de sesión exitoso');
+      res.json({ token });
+
+    });
+  } catch (error) {
+    console.error('Error en inicio de sesión:', error);
+    res.status(500).json({ mensaje: 'Error interno del servidor' });
   }
 });
 

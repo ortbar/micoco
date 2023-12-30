@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, catchError, map, throwError } from 'rxjs';
+import { Observable, catchError, map, tap, throwError } from 'rxjs';
 import { Usuario } from './user.model';
 import { ApiResponse } from './registro-component/api-response.interface';
+import { Router } from '@angular/router';
+
 
 
 @Injectable({
@@ -12,7 +14,7 @@ export class DataServiceService {
   private apiUrl = 'http://localhost:3000';
 
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router: Router) { }
 
   getUsuarios(): Observable<any[]> {
     const headers = new HttpHeaders({
@@ -77,51 +79,33 @@ export class DataServiceService {
     );
   }
 
-  
+
   registerUser(user: Usuario): Observable<ApiResponse> {
     const url = `${this.apiUrl}/registro`;
-  
+
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': 'http://localhost:4200'
     });
-  
-    return this.http.post<ApiResponse>(url, user, { headers }).pipe(
-      catchError((error) => {
-        console.error('Error en la solicitud:', error);
-  
-        // Verifica si el error proviene del servidor y contiene un objeto de error
-        if (error.error && error.error.error && error.error.error.message) {
-          return throwError(() => new Error(error.error.error.message));
-        } else {
-          return throwError(() => new Error('Ocurrió un error en la solicitud.'));
-        }
-      })
-    );
+
+    return this.http.post<ApiResponse>(url, user, { headers })
+      .pipe(
+        catchError((error) => {
+          console.error('Error en la solicitud:', error);
+
+          // Verifica si el error proviene del servidor y contiene un objeto de error
+          if (error.error && error.error.error && error.error.error.message) {
+            return throwError(() => new Error(error.error.error.message));
+          } else {
+            return throwError(() => new Error('Ocurrió un error en la solicitud.'));
+          }
+        }),
+        tap(() => this.router.navigate(['']))
+      );
+      
   }
-
-  // getUsuarios(): Observable<any[]> {
-  //   const headers = new HttpHeaders({
-  //     'Content-Type': 'application/json',
-  //     'Access-Control-Allow-Origin': 'http://localhost:4200' // aqui en el lado del cliente le estamos diciendo al servidor el origen donde se ejucuta mi app 4200
-  //     //Asegúrate de que este sea tu origen
-  //   });
-
-  //   return this.http.get<any[]>(`${this.apiUrl}/usuarios`);
-  // }
-
-
-
-
-  loginUser(credentials: { email: string; contrasena: string }): Observable<any> {
-    const url = `${this.apiUrl}/login`; // Ajusta la URL según tu backend
-    return this.http.post<any>(url, credentials);
-  }
-
-
-
-
-
 
 
 }
+
+
