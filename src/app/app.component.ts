@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { AuthService } from './auth.service';
 import { Router } from '@angular/router';
 
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -9,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class AppComponent {
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(public authService: AuthService, private router: Router) {}
 
   // title = 'Cocowin'; 
   
@@ -22,6 +23,15 @@ export class AppComponent {
   // cuadroUltimo_acceso: string = '';
   //array vacio para almacenar los datos que vienen de la
   // usuarios: Usuario[] = [];
+
+  ocultarNav(): boolean {
+    return !this.authService.isAuthenticated();
+  }
+//usar en el html principal para mostrar u ocultar contenido segúh el rol
+  isAdmin(): boolean {
+    return this.authService.getUserRole() === 'admin';
+  }
+
 
 
   ngOnInit() {

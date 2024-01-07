@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { DataServiceService } from '../data-service.service';
 import { Usuario } from '../user.model';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { AuthService } from '../auth.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-home-component',
@@ -9,7 +11,10 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   styleUrls: ['./home-component.component.css']
 })
 export class HomeComponentComponent {
-  constructor(private userService: DataServiceService) {}
+  constructor(private userService: DataServiceService, private servicio:AuthService) {}
+  private authSubscription: Subscription;
+  public isUserAuthenticated: boolean;
+
 
   bienvenidas = "";
 
@@ -65,6 +70,7 @@ export class HomeComponentComponent {
 
   
   ngOnInit() {
+    
     this.getUsuarios();
     this.bienvenida();
   }
