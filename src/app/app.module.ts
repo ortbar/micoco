@@ -17,6 +17,8 @@ import { AuthService } from './auth.service';
 import { LoginComponentComponent } from "./login-component/login-component.component";
 import { CommonModule } from '@angular/common';
 import { GameComponent } from './game/game.component';
+import { AcertijosService } from './acertijos.service';
+import { AcertijosComponentComponent } from './acertijos-component/acertijos-component.component';
 @NgModule({
     declarations: [
         AppComponent,
@@ -27,11 +29,12 @@ import { GameComponent } from './game/game.component';
         ActualizaComponentComponent,
         RegistroComponentComponent,
         LoginComponentComponent,
+        AcertijosComponentComponent
      
         
 
     ],
-    providers: [DataServiceService, AuthService],
+    providers: [DataServiceService, AuthService,AcertijosService],
     bootstrap: [AppComponent],
     imports: [
         BrowserModule,
@@ -47,7 +50,7 @@ import { GameComponent } from './game/game.component';
               tokenGetter: () => {
                 return localStorage.getItem('token');
               },
-              // allowedDomains: ['localhost:4200'],  // Ajusta esto según tu configuración
+              allowedDomains: ['localhost:4200'],  // Ajusta esto según tu configuración
               // disallowedRoutes: ['http://localhost:3000/iniciar-sesion'],  // Ajusta esto según tu configuración
             },
           })

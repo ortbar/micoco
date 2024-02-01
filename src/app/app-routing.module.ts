@@ -9,16 +9,18 @@ import { LoginComponentComponent } from './login-component/login-component.compo
 import { AuthGuard } from './auth.guard';
 import { IndexComponent } from './index/index.component';
 import { GameComponent } from './game/game.component';
+import { AcertijosComponentComponent } from './acertijos-component/acertijos-component.component';
 
 const routes: Routes = [
   {path:'dashboard', component:HomeComponentComponent, canActivate: [AuthGuard]},
   { path: 'index', component: IndexComponent, canActivate: [AuthGuard] },
   { path: 'game', component: GameComponent, canActivate: [AuthGuard] },
   { path: 'usuarios', component: AppComponent},
+  {path: '', component:AcertijosComponentComponent},
   { path: 'estadisticas', component: EstadisticasComponentComponent },
   { path: 'actualiza-usuario/:id', component: ActualizaComponentComponent },
   { path: 'registro', component: RegistroComponentComponent},
-  { path: '', component: LoginComponentComponent },
+  // { path: '', component: LoginComponentComponent },
 
 
   

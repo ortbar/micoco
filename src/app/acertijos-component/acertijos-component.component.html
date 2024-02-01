@@ -1,0 +1,54 @@
+
+<div class="container mt-4">
+  <form >
+    <div>
+      <label for="cancion_url">URL Canción</label>
+      <input type="text" id="cancion_url"  >
+    </div>
+    <div >
+      <label for="imagen_url">URL Imagen</label>
+      <input type="text" id="imagen_url"  >
+    </div>
+    <div >
+      <label for="pista">Pista</label>
+      <input type="text" id="pista"  >
+    </div>
+    <div >
+      <label for="solucion">Solución</label>
+      <input type="text" id="solucion"  >
+    </div>
+    <button type="submit" class="btn btn-primary">Agregar Acertijo</button>
+  </form>
+</div>
+
+
+
+<h2>{{mensaje}}</h2>
+<div class="container mt-4">
+    <div class="table-responsive">
+      <table class="table table-striped table-bordered table-hover text-center">
+        <thead class="table-dark">
+          <tr>
+            <th>url cancion</th>
+            <th>url imagen</th>
+            <th>pista</th>
+            <th>solucion</th>
+            <th>opciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let acertijo of acertijos">
+            <td>{{ acertijo.cancion_url }}</td>
+            <td>{{ acertijo.imagen_url }}</td>
+            <td>{{ acertijo.pista }}</td>
+            <td>{{ acertijo.solucion }}</td>
+            <td>
+              <a>Editar | Eliminar</a> 
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  

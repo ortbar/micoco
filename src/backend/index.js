@@ -185,14 +185,28 @@ router.post('/iniciar-sesion', async (req, res) => {
 router.get('/acertijos', (req, res) => {
   connection.query('SELECT * FROM acertijo', (err, result) => {
     if (err) throw err;
-    
-    res.json(result);
-
-
-    
-    
+    res.send(result);
   });
 });
+
+router.post('/acertijos', (req, res) => {
+  const { cancion_url, imagen_url, pista, solucion } = req.body;
+  const nuevoAcertijo = { cancion_url, imagen_url, pista, solucion };
+  connection.query('INSERT INTO acertijo SET ?', nuevoAcertijo, (err, result) => {
+    if (err) {
+      console.error("Error al agregar acertijo:", err);
+      res.status(500).json("Error interno del servidor al agregar acertijo");
+    } else {
+      console.log("Acertijo agregado correctamente:", result);
+      res.status(200).json("Acertijo agregado correctamente");
+    }
+  });
+});
+
+
+
+
+
 
 app.use('/', router);
 
