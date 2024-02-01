@@ -182,6 +182,18 @@ router.post('/iniciar-sesion', async (req, res) => {
   }
 });
 
+router.get('/acertijos', (req, res) => {
+  connection.query('SELECT * FROM acertijo', (err, result) => {
+    if (err) throw err;
+    
+    res.json(result);
+
+
+    
+    
+  });
+});
+
 app.use('/', router);
 
 app.listen(port, () => {

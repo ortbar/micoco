@@ -2,7 +2,7 @@ export class Usuario {
 
 
   caracteristicas: string[]=[]; // Asegúrate de inicializarla en el constructor si es necesario
-  id: number;
+    id: number;
     nombre: string;
     email: string;
     contrasena: string;

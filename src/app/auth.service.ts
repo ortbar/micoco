@@ -68,9 +68,9 @@ export class AuthService {
       .pipe(
         tap(() => {
          
-          this.router.navigate(['dashboard']);
+          this.router.navigate(['index']);
         }),
-        tap(() => this.router.navigate(['dashboard']))
+        tap(() => this.router.navigate(['index']))
       );
   }
 

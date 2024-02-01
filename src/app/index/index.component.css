@@ -1,0 +1,30 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  /* background-image: url('ruta/a/tu/imagen.jpg');  */
+  background-size: cover;
+  background-position: center;
+}
+
+.card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.start-button {
+  font-size: 20px;
+  padding: 10px 20px;
+  color: white;
+  border: none;
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0.5); /* Cambia a cualquier color RGBA que prefieras */
+  margin-top: 50px;
+}
+
+.start-button:hover {
+  background-color: rgba(0, 0, 0, 0.7); /* Cambia a cualquier color RGBA que prefieras */
+}

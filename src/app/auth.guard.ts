@@ -15,15 +15,16 @@ export class AuthGuard  {
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
+
     const currentRole = this.authService.getUserRole();
 
     if (this.authService.isAuthenticated()) {
       return true;
     }
-    if (currentRole === 'admin') {
-      return true;
-    }
+
+  
     return this.router.parseUrl('');
+
 
   
   }

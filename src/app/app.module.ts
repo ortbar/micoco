@@ -15,8 +15,8 @@ import { ActualizaComponentComponent } from './actualiza-component/actualiza-com
 import { RegistroComponentComponent } from './registro-component/registro-component.component';
 import { AuthService } from './auth.service';
 import { LoginComponentComponent } from "./login-component/login-component.component";
-
-
+import { CommonModule } from '@angular/common';
+import { GameComponent } from './game/game.component';
 @NgModule({
     declarations: [
         AppComponent,
@@ -27,17 +27,21 @@ import { LoginComponentComponent } from "./login-component/login-component.compo
         ActualizaComponentComponent,
         RegistroComponentComponent,
         LoginComponentComponent,
+     
+        
 
     ],
     providers: [DataServiceService, AuthService],
     bootstrap: [AppComponent],
     imports: [
         BrowserModule,
+        CommonModule,
         AppRoutingModule,
         HttpClientModule,
         FormsModule,
         RouterModule,
         ReactiveFormsModule,
+        GameComponent,
         JwtModule.forRoot({
             config: {
               tokenGetter: () => {

@@ -1,0 +1,86 @@
+body {
+  background-color: #e9edf3df; /* Fondo azul transparente */
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; /* Centra verticalmente en la pantalla */
+  height: 100vh; /* Hace que el contenedor ocupe el 100% de la altura de la pantalla */
+}
+
+.images {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+  max-width: 800px;
+  margin-bottom: 40px;
+}
+
+.image-container {
+  margin: 0 20px 40px 20px; /* Ajusta el margen entre las imágenes y la parte inferior */
+}
+
+.image-container img {
+  width: 300px; /* Incrementa el ancho según tus necesidades */
+  height: 225px; /* Incrementa el alto según tus necesidades */
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+input, button {
+  margin: 20px 0;
+}
+
+/* Centra el input y el botón horizontalmente */
+input,
+button {
+  align-self: center;
+}body {
+  background-color: #e9edf3df; /* Fondo azul transparente */
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; /* Centra verticalmente en la pantalla */
+  height: 100vh; /* Hace que el contenedor ocupe el 100% de la altura de la pantalla */
+}
+
+.images {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+  max-width: 800px;
+  margin-bottom: 40px;
+}
+
+.image-container {
+  margin: 0 20px 40px 20px; /* Ajusta el margen entre las imágenes y la parte inferior */
+  border: 2.5px solid #000; /* Añade un borde de color negro */
+  border-radius: 10px; /* Redondea los bordes del contenedor */
+  overflow: hidden; /* Evita que el borde se superponga al contenido interno */
+}
+
+.image-container img {
+  width: 300px; /* Incrementa el ancho según tus necesidades */
+  height: 225px; /* Incrementa el alto según tus necesidades */
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+input, button {
+  margin: 20px 0;
+}
+
+/* Centra el input y el botón horizontalmente */
+input,
+button {
+  align-self: center;
+}

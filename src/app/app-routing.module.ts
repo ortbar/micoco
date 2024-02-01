@@ -7,10 +7,13 @@ import { ActualizaComponentComponent } from './actualiza-component/actualiza-com
 import { RegistroComponentComponent } from './registro-component/registro-component.component';
 import { LoginComponentComponent } from './login-component/login-component.component';
 import { AuthGuard } from './auth.guard';
+import { IndexComponent } from './index/index.component';
+import { GameComponent } from './game/game.component';
 
 const routes: Routes = [
   {path:'dashboard', component:HomeComponentComponent, canActivate: [AuthGuard]},
-  
+  { path: 'index', component: IndexComponent, canActivate: [AuthGuard] },
+  { path: 'game', component: GameComponent, canActivate: [AuthGuard] },
   { path: 'usuarios', component: AppComponent},
   { path: 'estadisticas', component: EstadisticasComponentComponent },
   { path: 'actualiza-usuario/:id', component: ActualizaComponentComponent },

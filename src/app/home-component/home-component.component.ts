@@ -68,6 +68,11 @@ export class HomeComponentComponent {
     
   }
 
+  rolUsuario () { 
+
+    return localStorage.getItem('rol')? localStorage.getItem('rol') : "jugador";
+  }
+
   
   ngOnInit() {
     
