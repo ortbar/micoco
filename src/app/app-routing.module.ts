@@ -10,6 +10,7 @@ import { AuthGuard } from './auth.guard';
 import { IndexComponent } from './index/index.component';
 import { GameComponent } from './game/game.component';
 import { AcertijosComponentComponent } from './acertijos-component/acertijos-component.component';
+import { UpdateAcertijoComponent } from './update-acertijo/update-acertijo.component';
 
 const routes: Routes = [
   {path:'dashboard', component:HomeComponentComponent, canActivate: [AuthGuard]},
@@ -21,6 +22,8 @@ const routes: Routes = [
   { path: 'actualiza-usuario/:id', component: ActualizaComponentComponent },
   { path: 'registro', component: RegistroComponentComponent},
   // { path: '', component: LoginComponentComponent },
+  { path: 'actualiza-acertijo',component: UpdateAcertijoComponent},
+
 
 
   

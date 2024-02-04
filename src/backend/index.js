@@ -183,6 +183,7 @@ router.post('/iniciar-sesion', async (req, res) => {
 });
 
 router.get('/acertijos', (req, res) => {
+  console.log('Solicitud de acertijos recibida');
   connection.query('SELECT * FROM acertijo', (err, result) => {
     if (err) throw err;
     res.send(result);
@@ -190,8 +191,8 @@ router.get('/acertijos', (req, res) => {
 });
 
 router.post('/acertijos', (req, res) => {
-  const { cancion_url, imagen_url, pista, solucion } = req.body;
-  const nuevoAcertijo = { cancion_url, imagen_url, pista, solucion };
+  const { id_acertijo, id_juego, cancion_url, imagen_url, pista, solucion } = req.body;
+  const nuevoAcertijo = { id_acertijo, id_juego,cancion_url, imagen_url, pista, solucion };
   connection.query('INSERT INTO acertijo SET ?', nuevoAcertijo, (err, result) => {
     if (err) {
       console.error("Error al agregar acertijo:", err);

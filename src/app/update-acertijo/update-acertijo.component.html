@@ -1,0 +1,25 @@
+
+<form [formGroup]="acertijoForm" (ngSubmit)="updateAcertijo()">
+    <div>
+      <label for="id_juego">ID del juego:</label>
+      <input id="id_juego" type="text" formControlName="id_juego" class="form-control">
+    </div>
+    <div>
+      <label for="cancion_url">URL de la canción:</label>
+      <input id="cancion_url" type="text" formControlName="cancion_url" class="form-control">
+    </div>
+    <div>
+      <label for="imagen_url">URL de la imagen:</label>
+      <input id="imagen_url" type="text" formControlName="imagen_url" class="form-control">
+    </div>
+    <div>
+      <label for="pista">Pista:</label>
+      <input id="pista" type="text" formControlName="pista" >
+    </div>
+    <div>
+      <label for="solucion">Solución:</label>
+      <input id="solucion" type="text" formControlName="solucion">
+    </div>
+    <button type="submit">Actualizar acertijo</button>
+  </form>
+

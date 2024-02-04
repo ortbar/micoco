@@ -30,7 +30,8 @@ export class AcertijosService {
   }
 
   addAcertijo(acertijo: Acertijo): Observable<Acertijo> {
-    return this.http.post<Acertijo>(this.apiUrl, acertijo);
+    
+    return this.http.post<Acertijo>(this.apiUrl + '/acertijos', acertijo);
   }
 
   deleteAcertijo(id: number): Observable<Acertijo> {
@@ -39,7 +40,7 @@ export class AcertijosService {
   }
 
   updateAcertijo(acertijo: Acertijo): Observable<Acertijo> {
-    const url = `${this.apiUrl}/${acertijo.id_acertijo}`;
+    const url = `${this.apiUrl}/${acertijo.id_ac}`;
     return this.http.put<Acertijo>(url, acertijo);
   }
 

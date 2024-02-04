@@ -19,42 +19,44 @@ import { CommonModule } from '@angular/common';
 import { GameComponent } from './game/game.component';
 import { AcertijosService } from './acertijos.service';
 import { AcertijosComponentComponent } from './acertijos-component/acertijos-component.component';
+import { UpdateAcertijoComponent } from './update-acertijo/update-acertijo.component';
 @NgModule({
     declarations: [
-        AppComponent,
-        UsuarioComponentComponent,
-        CaracteristicasUsuarioComponent,
-        HomeComponentComponent,
-        EstadisticasComponentComponent,
-        ActualizaComponentComponent,
-        RegistroComponentComponent,
-        LoginComponentComponent,
-        AcertijosComponentComponent
+      AppComponent,
+      UsuarioComponentComponent,
+      CaracteristicasUsuarioComponent,
+      HomeComponentComponent,
+      EstadisticasComponentComponent,
+      ActualizaComponentComponent,
+      RegistroComponentComponent,
+      LoginComponentComponent,
+      AcertijosComponentComponent,
      
-        
+      
 
     ],
-    providers: [DataServiceService, AuthService,AcertijosService],
-    bootstrap: [AppComponent],
     imports: [
-        BrowserModule,
-        CommonModule,
-        AppRoutingModule,
-        HttpClientModule,
-        FormsModule,
-        RouterModule,
-        ReactiveFormsModule,
-        GameComponent,
-        JwtModule.forRoot({
-            config: {
-              tokenGetter: () => {
-                return localStorage.getItem('token');
-              },
-              allowedDomains: ['localhost:4200'],  // Ajusta esto según tu configuración
-              // disallowedRoutes: ['http://localhost:3000/iniciar-sesion'],  // Ajusta esto según tu configuración
+      CommonModule,
+      ReactiveFormsModule,
+      BrowserModule,
+      AppRoutingModule,
+      HttpClientModule,
+      FormsModule,
+      RouterModule,
+      ReactiveFormsModule,
+      GameComponent,
+      JwtModule.forRoot({
+          config: {
+            tokenGetter: () => {
+              return localStorage.getItem('token');
             },
-          })
-        
-    ]
+            allowedDomains: ['localhost:4200'],  // Ajusta esto según tu configuración
+            // disallowedRoutes: ['http://localhost:3000/iniciar-sesion'],  // Ajusta esto según tu configuración
+          },
+        })
+      
+    ],
+    providers: [DataServiceService, AuthService,AcertijosService],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,5 +1,5 @@
 export class Acertijo {
-  id_acertijo: number;
+  id_ac: number;
   id_juego: number;
   pista: string;
   solucion: string;

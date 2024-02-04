@@ -27,25 +27,25 @@ export class LoginComponentComponent {
  iniciarSesion() {
   console.log('Iniciando sesión desde el componente');
   
-    if (true) {
-      const email = this.loginForm.get('email')?.value;
-      const contrasena = this.loginForm.get('contrasena')?.value;
+    
+    const email = this.loginForm.get('email')?.value;
+    const contrasena = this.loginForm.get('contrasena')?.value;
 
-      console.log(email,contrasena, "here")
+    console.log(email,contrasena, "here")
 
-      this.servicio.iniciarSesion(email, contrasena).subscribe({
-        
-        next: (response: Token) => {
-          console.log(response)
-          this.servicio.setToken(response.token);
-          this.servicio.setUser(response.user);
-          console.log('Inicio de sesión exitoso');
-        },
-        error: (error: any) => {
-          this.mensajeError = 'Credenciales incorrectas. Por favor, inténtalo de nuevo.';
-          console.error('Error en inicio de sesión:', error);
-        }
-      });
-    }
+    this.servicio.iniciarSesion(email, contrasena).subscribe({
+      
+      next: (response: Token) => {
+        console.log(response)
+        this.servicio.setToken(response.token);
+        this.servicio.setUser(response.user);
+        console.log('Inicio de sesión exitoso');
+      },
+      error: (error: any) => {
+        this.mensajeError = 'Credenciales incorrectas. Por favor, inténtalo de nuevo.';
+        console.error('Error en inicio de sesión:', error);
+      }
+    });
+    
   }
 }
