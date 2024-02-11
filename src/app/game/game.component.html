@@ -10,17 +10,47 @@
     <div class="container">
         <div class="images">
           <div class="image-container">
-            <img [src]="acertijoActual.i_url1" alt="Imagen 1">
+            <img [src]="acertijoActual.i_url2" alt="Imagen 1">
           </div>
           <div class="image-container">
-            <img [src]="acertijoActual.i_url2" alt="Imagen 2">
+            <img [src]="acertijoActual.i_url1" alt="Imagen 2">
           </div>
         </div>
       
         <input type="text" class="form-control form-control-lg">
         
-        <button type="button" class="btn btn-primary btn-lg">Enviar respuesta</button>
+       
+        <!-- Button trigger modal -->
+        <div class="button-container">
+          <!-- Button trigger modal -->
+          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="verificarRespuesta()">
+            Comprobar
+          </button>
+          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            Pista
+          </button>
       </div>
+      </div>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Pista</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Tu puta pista
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
     
 </body>
 </html>

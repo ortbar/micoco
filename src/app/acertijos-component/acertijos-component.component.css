@@ -2,6 +2,10 @@
   margin-bottom: 20px;
 }
 
+body {
+  background: #ecf0f3;
+}
+
 /* Estilos para el formulario */
 .form-container {
   background-color: #f8f9fa;

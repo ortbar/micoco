@@ -47,10 +47,10 @@
       </div>
     </div>
     <button type="submit" class="btn btn-primary">Agregar Acertijo</button>
+    <a routerLink="/index" class="btn btn-link">Volver</a>
 
 </div>
 
-<h2 class="mt-4">{{mensaje}}</h2>
 
 <div class="container mt-4">
   <div class="table-responsive">
@@ -63,6 +63,7 @@
           <th>URL Imagen</th>
           <th>Pista</th>
           <th>Solución</th>
+          <th>Pregunta</th>
           <th>Opciones</th>
         </tr>
       </thead>
@@ -74,9 +75,9 @@
           <td>{{ acertijo.imagen_url }}</td>
           <td>{{ acertijo.pista }}</td>
           <td>{{ acertijo.solucion }}</td>
+          <td>{{ acertijo.pregunta }}</td>
           <td>
-            <a routerLink="/actuazliza-acertijo">Editar</a> &nbsp;
-            <a >Eliminar</a>
+            <a [routerLink]="['/actualiza-acertijo', acertijo.id_ac]">Editar | Eliminar</a> <br>    
           </td>
         </tr>
       </tbody>

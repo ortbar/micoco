@@ -191,8 +191,8 @@ router.get('/acertijos', (req, res) => {
 });
 
 router.post('/acertijos', (req, res) => {
-  const { id_acertijo, id_juego, cancion_url, imagen_url, pista, solucion } = req.body;
-  const nuevoAcertijo = { id_acertijo, id_juego,cancion_url, imagen_url, pista, solucion };
+  const { id_juego, cancion_url, imagen_url, pista, solucion } = req.body;
+  const nuevoAcertijo = {id_juego,cancion_url, imagen_url, pista, solucion,pregunta };
   connection.query('INSERT INTO acertijo SET ?', nuevoAcertijo, (err, result) => {
     if (err) {
       console.error("Error al agregar acertijo:", err);
@@ -201,6 +201,27 @@ router.post('/acertijos', (req, res) => {
       console.log("Acertijo agregado correctamente:", result);
       res.status(200).json("Acertijo agregado correctamente");
     }
+  });
+});
+
+router.get('/acertijos/:id', (req, res) => {
+  const acertijoId = req.params.id; // Cambiado de id_acertijo a id
+  const { id_ac, id_juego, cancion_url, imagen_url, pista, solucion,pregunta } = req.body;
+  const acertijoActualizado = { id_ac, id_juego, cancion_url, imagen_url, pista, solucion,pregunta };
+  connection.query('SELECT * FROM acertijo WHERE id_ac = ?', acertijoId, (err, result) => {
+    if (err) throw err;
+    res.send(result[0]);
+  });
+});
+
+router.put('/acertijos/:id', (req, res) => {
+  console.log('Solicitud de actualización de acertijo recibida');
+  const acertijoId = req.params.id;
+  const { id_ac, id_juego, cancion_url, imagen_url, pista, solucion,pregunta } = req.body;
+  const acertijoActualizado = { id_ac, id_juego, cancion_url, imagen_url, pista, solucion,pregunta };
+  connection.query('UPDATE acertijo SET ? WHERE id_ac = ?', [acertijoActualizado, acertijoId], (err, result) => {
+    if (err) throw err;
+    res.send(result);
   });
 });
 

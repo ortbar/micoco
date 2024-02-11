@@ -32,7 +32,7 @@ export class DataServiceService {
 
 
   addUser(user: any): Observable<any> {
-    return this.http.post<any>(`${this.apiUrl}/usuarios`, user);
+    return this.http.post<any>(`${this.apiUrl}/registro`, user);
 
   }
 
@@ -42,6 +42,7 @@ export class DataServiceService {
 
   deleteUser(userId: number): Observable<any> {
     return this.http.delete<any>(`${this.apiUrl}/usuarios/${userId}`);
+    
   }
 
   // --------------------------------------------------------------------------------------------------//

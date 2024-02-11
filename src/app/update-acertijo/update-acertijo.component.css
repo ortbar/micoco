@@ -1,0 +1,34 @@
+.custom-form {
+  max-width: 500px;
+  margin: 0 auto; /* Centrar el formulario */
+  padding: 2rem;
+  background: #e2dddd;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.custom-form .mb-3 {
+  display: flex; /* Utilizar flexbox */
+  flex-direction: column; /* Cambiar la dirección de los elementos a columna */
+  margin-bottom: 1rem; /* Añadir margen inferior para separar los elementos */
+}
+
+.custom-form .mb-3 input {
+  width: 300px; /* Reducir el ancho de los inputs */
+}
+
+.custom-form .mb-3 label {
+  width: 100px; /* Reducir el ancho de las etiquetas */
+  margin-bottom: 0.5rem; /* Añadir margen inferior para separar las etiquetas de los inputs */
+}
+
+.button-container {
+  display: flex; /* Utilizar flexbox */
+  justify-content: center; /* Centrar horizontalmente el contenido */
+  margin-top: 1rem; /* Añadir margen superior para separar el botón de los inputs */
+}
+
+.error-message {
+  color: red;
+  margin-top: 0.5rem; /* Añadir margen superior para separar los mensajes de error */
+}

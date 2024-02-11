@@ -17,8 +17,9 @@ export class GameComponent {
 
   acertijos: [any];
   acertijoActual: Acertijo;
-  indiceAcertijoActual = 0;
-  tiempoInicio = Date.now();
+ indiceAcertijoActual = 0;
+ respuesta:string="";
+
   
 
   
@@ -32,9 +33,24 @@ export class GameComponent {
 
     this.getAcertijos();
    
-;
-    
+; 
   }
+
+  verificarRespuesta() {
+    if (this.acertijoActual.solucion === this.respuesta) {
+      let audio = new Audio();
+      audio.src = "/assets/tu-cancion.mp3";
+      audio.load();
+      audio.play();
+    } else {
+      // La respuesta del jugador es incorrecta
+      console.log('Respuesta incorrecta, por favor intenta de nuevo');
+    }
+    // Limpiar la respuesta del jugador
+    this.respuesta = '';
+  }
+
+
 
   getAcertijos() {
     this.gameService.getAcertijos().subscribe((acertijos :[Acertijo]) => {
@@ -47,6 +63,8 @@ export class GameComponent {
       
     });
   }
+
+
 
 
 

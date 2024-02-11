@@ -1,6 +1,6 @@
 
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup,ReactiveFormsModule, Validators } from '@angular/forms';
 import { DataServiceService } from '../data-service.service';
 import { Usuario } from '../user.model';
 import { ApiResponse } from './api-response.interface';

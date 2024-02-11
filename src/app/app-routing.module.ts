@@ -17,12 +17,12 @@ const routes: Routes = [
   { path: 'index', component: IndexComponent, canActivate: [AuthGuard] },
   { path: 'game', component: GameComponent, canActivate: [AuthGuard] },
   { path: 'usuarios', component: AppComponent},
-  {path: '', component:AcertijosComponentComponent},
+  {path: 'acertijos', component:AcertijosComponentComponent},
   { path: 'estadisticas', component: EstadisticasComponentComponent },
   { path: 'actualiza-usuario/:id', component: ActualizaComponentComponent },
   { path: 'registro', component: RegistroComponentComponent},
-  // { path: '', component: LoginComponentComponent },
-  { path: 'actualiza-acertijo',component: UpdateAcertijoComponent},
+  { path: '', component: LoginComponentComponent },
+  { path: 'actualiza-acertijo/:id',component: UpdateAcertijoComponent},
 
 
 

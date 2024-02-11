@@ -13,7 +13,7 @@ export class AcertijosComponentComponent implements OnInit {
 
   constructor(private acertijoService: AcertijosService, private formBuilder: FormBuilder) { }
   acertijoForm: FormGroup;
-  mensaje: string = "Listado de acertijos";
+  mensaje: string = "acertijos";
   acertijos: Acertijo[]=[];
 
   getAcertijos(): void {
@@ -29,7 +29,8 @@ export class AcertijosComponentComponent implements OnInit {
       cancion_url: ['', Validators.required],
       imagen_url: ['', Validators.required],
       pista: ['', Validators.required],
-      solucion: ['', Validators.required]
+      solucion: ['', Validators.required],
+      pregunta: ['', Validators.required]
     });
   }
 

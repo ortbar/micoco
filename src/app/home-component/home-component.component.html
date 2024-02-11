@@ -1,54 +1,49 @@
-<div class="container">
-    <div class="col">
-      <h1 class="text-center">{{title}}</h1>
-    </div>
-    <br><br>
-  
-     {{bienvenidas}}
-  
-    <form class="form-inline d-flex justify-content-center">
-  
+<form [formGroup]="registroForm" class="container mt-4 form-container" method="POST" (ngSubmit)="registrar()">
 
-    
-      <div class="form-group mx-2">
-        <label for="nombre" class="mr-2">Nombre</label>
-        <input type="text" name="nombre" id="nombre" placeholder="Nombre" class="form-control" [(ngModel)]="cuadroNombre">
-      </div>
-  
-      <div class="form-group mx-2">
-        <label for="email" class="mr-2">Email</label>
-        <input type="email" name="email" id="email" placeholder="Email" class="form-control" [(ngModel)]="cuadroEmail">
-      </div>
-  
-      <div class="form-group mx-2">
-        <label for="contrasena" class="mr-2">Contraseña</label>
-        <input type="password" name="contrasena" id="contrasena" placeholder="Contraseña" class="form-control" [(ngModel)]="cuadroContrasena">
-      </div>
-  
-      <div class="form-group mx-2">
-        <label for="rol" class="mr-2">Rol</label>
-        <input type="text" name="rol" id="rol" placeholder="Rol" class="form-control" [(ngModel)]="cuadroRol">
-      </div>
-  
-      <div class="form-group mx-2">
-        <label for="temainterfaz" class="mr-2">Tema Interfaz</label>
-        <input type="text" name="temainterfaz" id="temainterfaz" placeholder="Tema Interfaz" class="form-control" [(ngModel)]="cuadroTema_interfaz">
-      </div>
-  
-      <div class="form-group mx-2">
-        <label for="idioma" class="mr-2">Idioma</label>
-        <input type="text" name="idioma" id="idioma" placeholder="Idioma" class="form-control" [(ngModel)]="cuadroIdioma">
-      </div>
-  
-      <div class="form-group mx-2">
-        <label for="ultimo_acceso" class="mr-2">Último Acceso</label>
-        <input type="text" name="ultimo_acceso" id="ultimo_acceso" placeholder="Último Acceso" class="form-control" [(ngModel)]="cuadroUltimo_acceso">
-      </div>
-    </form>
-    <div class="d-flex justify-content-center mt-3">
-      <button type="submit" class="btn btn-primary" (click)="agregarUsuario()">Agregar</button>
-    </div>
+<!-- <div class="container mt-4 form-container"> -->
+     <!-- <div class="container mt-4 form-container"> -->
+  <!-- Username Field -->
+  <div class="mb-3">
+    <label for="nombre" class="form-label">Nombre</label>
+    <input type="text" formControlName="nombre" class="form-control" placeholder="Nombre">
+    <div *ngIf="registroForm.get('nombre')?.hasError('required') && registroForm.get('nombre')?.touched"
+         class="error-message">Nombre es obligatorio</div>
+    <div *ngIf="registroForm.get('nombre')?.hasError('minlength') && registroForm.get('nombre')?.touched"
+         class="error-message">Nombre debe tener al menos 6 caracteres</div>
+    <div *ngIf="registroForm.get('nombre')?.hasError('pattern') && registroForm.get('nombre')?.touched"
+         class="error-message">Nombre solo puede contener letras y números</div>
   </div>
+
+  <!-- Email Field -->
+  <div class="mb-3">
+    <label for="email" class="form-label">Email</label>
+    <input type="email" formControlName="email" class="form-control" placeholder="Email">
+    <div *ngIf="registroForm.get('email')?.hasError('required') && registroForm.get('email')?.touched"
+         class="error-message">Email es obligatorio</div>
+    <div *ngIf="registroForm.get('email')?.hasError('email') && registroForm.get('email')?.touched"
+         class="error-message">Introduce un email válido</div>
+    <div *ngIf="registroForm.get('email')?.hasError('pattern') && registroForm.get('email')?.touched"
+         class="error-message">Solo se admiten correos de Gmail</div>
+  </div>
+
+  <!-- Contraseña Field -->
+  <div class="mb-3">
+    <label for="contrasena" class="form-label">Contraseña</label>
+    <input type="password" formControlName="contrasena" class="form-control" placeholder="Contraseña">
+    <div *ngIf="registroForm.get('contrasena')?.hasError('required') && registroForm.get('contrasena')?.touched"
+         class="error-message">Contraseña es obligatoria</div>
+    <div *ngIf="registroForm.get('contrasena')?.hasError('minlength') && registroForm.get('contrasena')?.touched"
+         class="error-message">Contraseña debe tener al menos 6 caracteres</div>
+    <div *ngIf="registroForm.get('contrasena')?.hasError('pattern') && registroForm.get('contrasena')?.touched"
+         class="error-message">Contraseña debe contener números y letras uno de ellos caracter especial</div>
+  </div>
+  <button type="submit" class="btn btn-primary">Agregar Usuario</button>
+  
+</form>
+<div *ngIf="mensajeError" class="error-message">
+     {{ mensajeError }}
+   </div>
+
   
   <!-- etigueta para incluir al comp hijo dentro del comp padre -->
   <!-- teneemos que pasar informacion del comp padre al hijo ,para ello pasamos la declaracion de estas dos variables, para que el comp hijo los reconozoca. como se hace? con el dec @iNPUT -->

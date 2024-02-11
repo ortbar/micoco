@@ -1,25 +1,73 @@
+<div class="custom-form mt-4 form-container">
+  <form [formGroup]="acertijoForm" (ngSubmit)="updateAcertijo()">
+    <fieldset>
+      <legend>Actualizar acertijos</legend>
+      <div class="mb-3">
+        <label for="id_ac" class="form-label">ID Acertijo</label>
+        <input type="number" id="id_ac" class="form-control mr-2" formControlName="id_ac"  [readOnly]="true">
+        <div *ngIf="acertijoForm.get('id_ac')?.hasError('required') && acertijoForm.get('id_ac')?.touched"
+          class="error-message">
+          ID acertijos es obligatorio.
+        </div>
+      </div>
 
-<form [formGroup]="acertijoForm" (ngSubmit)="updateAcertijo()">
-    <div>
-      <label for="id_juego">ID del juego:</label>
-      <input id="id_juego" type="text" formControlName="id_juego" class="form-control">
-    </div>
-    <div>
-      <label for="cancion_url">URL de la canción:</label>
-      <input id="cancion_url" type="text" formControlName="cancion_url" class="form-control">
-    </div>
-    <div>
-      <label for="imagen_url">URL de la imagen:</label>
-      <input id="imagen_url" type="text" formControlName="imagen_url" class="form-control">
-    </div>
-    <div>
-      <label for="pista">Pista:</label>
-      <input id="pista" type="text" formControlName="pista" >
-    </div>
-    <div>
-      <label for="solucion">Solución:</label>
-      <input id="solucion" type="text" formControlName="solucion">
-    </div>
-    <button type="submit">Actualizar acertijo</button>
+      <div class="mb-3">
+        <label for="id_juego" class="form-label">ID Juego</label>
+        <input type="number" id="id_juego" class="form-control mr-2" formControlName="id_juego" required>
+        <div *ngIf="acertijoForm.get('id_juego')?.hasError('required') && acertijoForm.get('id_juego')?.touched"
+          class="error-message">
+          ID Juego es obligatorio.
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label for="cancion_url" class="form-label">URL Canción</label>
+        <input type="text" id="cancion_url" class="form-control mr-2" formControlName="cancion_url" required>
+        <div *ngIf="acertijoForm.get('cancion_url')?.hasError('required') && acertijoForm.get('cancion_url')?.touched"
+          class="error-message">
+          Ruta es obligatorio.
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label for="imagen_url" class="form-label">URL Imagen</label>
+        <input type="text" id="imagen_url" class="form-control mr-2" formControlName="imagen_url" required>
+        <div *ngIf="acertijoForm.get('imagen_url')?.hasError('required') && acertijoForm.get('imagen_url')?.touched"
+          class="error-message">
+          Ruta de la imagen es obligatorio.
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label for="pista" class="form-label">Pista</label>
+        <input type="text" id="pista" class="form-control mr-2" formControlName="pista" required>
+        <div *ngIf="acertijoForm.get('pista')?.hasError('required') && acertijoForm.get('pista')?.touched"
+          class="error-message">
+          Ruta para la pista obligatorio.
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label for="solucion" class="form-label">Solución</label>
+        <input type="text" id="solucion" class="form-control mr-2" formControlName="solucion" required>
+        <div *ngIf="acertijoForm.get('solucion')?.hasError('required') && acertijoForm.get('solucion')?.touched"
+          class="error-message">
+          Ruta es obligatorio.
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="pregunta" class="form-label">Pregunta</label>
+        <input type="text" id="pregunta" class="form-control mr-2" formControlName="pregunta" required>
+        <div *ngIf="acertijoForm.get('pregunta')?.hasError('pregunta') && acertijoForm.get('pregunta')?.touched"
+          class="error-message">
+          Pregunta es obligatorio.
+        </div>
+      </div>
+
+      <div class="button-container"> <!-- Contenedor para el botón -->
+        <button type="submit" class="btn btn-primary">Actualizar</button>
+        <button type="submit" class="btn btn-danger">Eliminar</button>
+      </div>
+    </fieldset>
   </form>
-
+</div>

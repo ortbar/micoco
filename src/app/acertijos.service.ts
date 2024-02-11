@@ -25,8 +25,10 @@ export class AcertijosService {
   }
 
   getAcertijoById(id: number): Observable<Acertijo> {
-    const url = `${this.apiUrl}/${id}`;
+    const url = `${this.apiUrl}/acertijos/${id}`;
+   
     return this.http.get<Acertijo>(url);
+   
   }
 
   addAcertijo(acertijo: Acertijo): Observable<Acertijo> {
@@ -40,7 +42,7 @@ export class AcertijosService {
   }
 
   updateAcertijo(acertijo: Acertijo): Observable<Acertijo> {
-    const url = `${this.apiUrl}/${acertijo.id_ac}`;
+    const url = `${this.apiUrl}/acertijos/${acertijo.id_ac}`;
     return this.http.put<Acertijo>(url, acertijo);
   }
 
