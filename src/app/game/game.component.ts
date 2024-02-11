@@ -3,16 +3,21 @@ import { GameService } from '../game.service';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { Acertijo } from './acertijo.model'; 
+import { Validators, FormGroup, FormBuilder,FormsModule } from '@angular/forms';
 
 
 
 
 @Component({
   selector: 'app-game',
-  standalone: true,
   templateUrl: './game.component.html',
-  styleUrl: './game.component.css'
+  styleUrl: './game.component.css',
+
 })
+
+
+
+
 export class GameComponent {
 
   acertijos: [any];
@@ -20,7 +25,7 @@ export class GameComponent {
  indiceAcertijoActual = 0;
  respuesta:string="";
 
-  
+
 
   
   
@@ -39,7 +44,7 @@ export class GameComponent {
   verificarRespuesta() {
     if (this.acertijoActual.solucion === this.respuesta) {
       let audio = new Audio();
-      audio.src = "/assets/tu-cancion.mp3";
+      audio.src = this.acertijoActual.cancion_url;
       audio.load();
       audio.play();
     } else {

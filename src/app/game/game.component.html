@@ -8,22 +8,23 @@
 <body>
 
     <div class="container">
+        <h1>{{acertijoActual.pregunta}}</h1>
         <div class="images">
           <div class="image-container">
-            <img [src]="acertijoActual.i_url2" alt="Imagen 1">
+            <img [src]="this.acertijoActual.i_url2" alt="Imagen 1">
           </div>
           <div class="image-container">
-            <img [src]="acertijoActual.i_url1" alt="Imagen 2">
+            <img [src]="this.acertijoActual.i_url1" alt="Imagen 2">
           </div>
         </div>
       
-        <input type="text" class="form-control form-control-lg">
+        <input type="text" class="form-control form-control-lg" [(ngModel)]="respuesta" >
         
        
         <!-- Button trigger modal -->
         <div class="button-container">
           <!-- Button trigger modal -->
-          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="verificarRespuesta()">
+          <button type="button"  (click)="verificarRespuesta()">
             Comprobar
           </button>
           <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
@@ -43,7 +44,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        Tu puta pista
+        {{acertijoActual.pista}}
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

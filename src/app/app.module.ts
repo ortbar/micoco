@@ -20,6 +20,7 @@ import { GameComponent } from './game/game.component';
 import { AcertijosService } from './acertijos.service';
 import { AcertijosComponentComponent } from './acertijos-component/acertijos-component.component';
 import { UpdateAcertijoComponent } from './update-acertijo/update-acertijo.component';
+
 @NgModule({
     declarations: [
       AppComponent,
@@ -31,9 +32,8 @@ import { UpdateAcertijoComponent } from './update-acertijo/update-acertijo.compo
       RegistroComponentComponent,
       LoginComponentComponent,
       AcertijosComponentComponent,
-     
-      
-
+      HomeComponentComponent,
+      GameComponent,
     ],
     imports: [
       CommonModule,
@@ -44,7 +44,6 @@ import { UpdateAcertijoComponent } from './update-acertijo/update-acertijo.compo
       FormsModule,
       RouterModule,
       ReactiveFormsModule,
-      GameComponent,
       JwtModule.forRoot({
           config: {
             tokenGetter: () => {
@@ -53,10 +52,11 @@ import { UpdateAcertijoComponent } from './update-acertijo/update-acertijo.compo
             allowedDomains: ['localhost:4200'],  // Ajusta esto según tu configuración
             // disallowedRoutes: ['http://localhost:3000/iniciar-sesion'],  // Ajusta esto según tu configuración
           },
-        })
+        }),
+      UpdateAcertijoComponent,
       
     ],
     providers: [DataServiceService, AuthService,AcertijosService],
-    bootstrap: [AppComponent]
+    bootstrap: [AppComponent],
 })
 export class AppModule { }
