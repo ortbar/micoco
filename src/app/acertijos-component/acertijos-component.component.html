@@ -19,7 +19,7 @@
       <input type="text" id="cancion_url" class="form-control" formControlName="cancion_url" required>
       <div *ngIf="acertijoForm.get('cancion_url')?.hasError('required') && acertijoForm.get('cancion_url')?.touched"
         class="error-message">
-        Ruta es obligatorio.
+        Ruta cancion es obligatorio.
       </div>
     </div>
     <div class="mb-3">
@@ -43,7 +43,15 @@
       <input type="text" id="solucion" class="form-control" formControlName="solucion" required>
       <div *ngIf="acertijoForm.get('solucion')?.hasError('required') && acertijoForm.get('solucion')?.touched"
         class="error-message">
-        Ruta es obligatorio.
+        Ruta solucion es obligatorio.
+      </div>
+    </div>
+    <div class="mb-3">
+      <label for="pregunta" class="form-label">Pregunta</label>
+      <input type="text" id="solucion" class="form-control" formControlName="solucion" required>
+      <div *ngIf="acertijoForm.get('pregunta')?.hasError('required') && acertijoForm.get('pregunta')?.touched"
+        class="error-message">
+        Pregunta es obligatorio
       </div>
     </div>
     <button type="submit" class="btn btn-primary">Agregar Acertijo</button>

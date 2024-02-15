@@ -8,6 +8,7 @@
 <body>
 
     <div class="container">
+        <h1>Puntsción actual: {{puntuacion}}</h1>
         <h1>{{acertijoActual.pregunta}}</h1>
         <div class="images">
           <div class="image-container">
@@ -19,6 +20,7 @@
         </div>
       
         <input type="text" class="form-control form-control-lg" [(ngModel)]="respuesta" >
+        <p id="mensaje-solucion" style="display: none;"> {{ mensaje }}</p>
         
        
         <!-- Button trigger modal -->

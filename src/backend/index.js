@@ -85,7 +85,7 @@ router.post('/registro', async (req, res) => {
   try {
     const { nombre, email, contrasena } = req.body;
 
-    let error = [];
+let error = [];
 
     if (!nombre || !email || !contrasena) {
       error.push({ mensaje: 'Por favor ingrese todos los campos' });
@@ -116,6 +116,7 @@ router.post('/registro', async (req, res) => {
             );
 
             res.status(201).json({ mensaje: 'Usuario registrado con éxsito', success: true });
+            
           })
           .catch(err => {
             // Maneja cualquier error que pueda ocurrir durante el hashing
@@ -127,16 +128,17 @@ router.post('/registro', async (req, res) => {
 
 
 
-    });
+    }
 
-
-
-
+    
+    );
   } catch (error) {
     console.error('Error al registrar usuario:', error);
     res.status(500).json({ mensaje: 'Error interno del servidor al registrar usuario', success: false });
   }
-});
+}    
+
+);
 
 router.post('/iniciar-sesion', async (req, res) => {
   console.log('Solicitud de inicio de sesión recibida');

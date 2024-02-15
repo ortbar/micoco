@@ -4,6 +4,7 @@ import { Observable, catchError, map, tap, throwError } from 'rxjs';
 import { Usuario } from './user.model';
 import { ApiResponse } from './registro-component/api-response.interface';
 import { Router } from '@angular/router';
+import { Subject } from 'rxjs';
 
 
 
@@ -83,17 +84,17 @@ export class DataServiceService {
 
   registerUser(user: Usuario): Observable<ApiResponse> {
     const url = `${this.apiUrl}/registro`;
-
+  
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': 'http://localhost:4200'
     });
-
-    return this.http.post<ApiResponse>(url, user, { headers })
+  
+    return this.http.post<ApiResponse>(url, user)
       .pipe(
         catchError((error) => {
           console.error('Error en la solicitud:', error);
-
+  
           // Verifica si el error proviene del servidor y contiene un objeto de error
           if (error.error && error.error.error && error.error.error.message) {
             return throwError(() => new Error(error.error.error.message));
@@ -101,12 +102,17 @@ export class DataServiceService {
             return throwError(() => new Error('Ocurrió un error en la solicitud.'));
           }
         }),
-        tap(() => this.router.navigate(['']))
+        tap((response) => {
+          if (response.success) {
+            this.router.navigate(['dashboard']);
+            this.getUsuarios().subscribe(users => {
+              users.push(user);
+              
+            } );
+          }
+        })
       );
-      
   }
-
-
 }
 
 
