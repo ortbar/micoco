@@ -48,7 +48,7 @@
     </div>
     <div class="mb-3">
       <label for="pregunta" class="form-label">Pregunta</label>
-      <input type="text" id="solucion" class="form-control" formControlName="solucion" required>
+      <input type="text" id="pregunta" class="form-control" formControlName="pregunta" required>
       <div *ngIf="acertijoForm.get('pregunta')?.hasError('required') && acertijoForm.get('pregunta')?.touched"
         class="error-message">
         Pregunta es obligatorio
@@ -85,9 +85,9 @@
           <td>{{ acertijo.solucion }}</td>
           <td>{{ acertijo.pregunta }}</td>
           <td>
-            <a [routerLink]="['/actualiza-acertijo', acertijo.id_ac]">Editar | Eliminar</a> <br>    
+            <a [routerLink]="['/actualiza-acertijo', acertijo.id_ac]">Editar</a> <br>  
+            <a (click)="deleteAcertijo(acertijo.id_ac)">Eliminar</a>      
           </td>
-        </tr>
       </tbody>
     </table>
   </div>

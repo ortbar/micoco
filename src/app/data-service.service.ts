@@ -13,6 +13,8 @@ import { Subject } from 'rxjs';
 })
 export class DataServiceService {
   private apiUrl = 'http://localhost:3000';
+  private userRegistered = new Subject<void>();
+
 
 
   constructor(private http: HttpClient, private router: Router) { }
@@ -107,12 +109,20 @@ export class DataServiceService {
             this.router.navigate(['dashboard']);
             this.getUsuarios().subscribe(users => {
               users.push(user);
+              this.userRegistered.next();
               
             } );
           }
         })
       );
+      
+
   }
+  getUserRegisteredObservable() {
+    return this.userRegistered.asObservable();
+  }
+
+
 }
 
 

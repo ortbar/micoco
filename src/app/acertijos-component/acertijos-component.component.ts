@@ -46,4 +46,22 @@ export class AcertijosComponentComponent implements OnInit {
       console.error("Formulario no válido");
     }
   }
+
+  
+  deleteAcertijo(id: number): void {
+    this.acertijoService.deleteAcertijo(id).subscribe({
+      next: () => {
+        console.log('Acertijo eliminado con éxito');
+        this.getAcertijos();
+
+
+        
+        // Aquí puedes agregar código para manejar lo que sucede después de que el acertijo se elimina con éxito.
+        // Por ejemplo, podrías redirigir al usuario a otra página o actualizar la lista de acertijos.
+      },
+      error: error => {
+        console.error('Error eliminando acertijo:', error);
+      }
+    });
+  }
 }

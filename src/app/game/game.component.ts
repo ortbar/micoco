@@ -27,7 +27,7 @@ export class GameComponent {
  respuesta:string="";
   mensaje:string="";
   puntuacion:number=0;
-  limitAcertijos:number=10;
+  limitAcertijos:number=2;
 
 
 
@@ -45,19 +45,19 @@ export class GameComponent {
 ; 
   }
   verificarRespuesta() {
+    
+    
+
     if (this.acertijoActual.solucion.toLowerCase().trim().replace(/\s/g, '') === this.respuesta.toLowerCase().trim().replace(/\s/g, '')) {
-      
-      this.puntuacion+=5;
+      this.puntuacion += 5;
       
       let audio = new Audio();
       audio.src = this.acertijoActual.cancion_url;
       audio.load();
       audio.play();
-      this.mensaje = '¡Respuesta correcta! Escucha la canción...';
-      this.cd.detectChanges();
-
+      
       this.mostrarRespuesta('¡Respuesta correcta, + 5 puntos! Escucha la canción...');
-
+      
       // Obtener la duración del audio y esperar hasta que termine
       audio.onloadedmetadata = () => {
         let tiempoRestante = Math.floor(audio.duration);
@@ -67,13 +67,13 @@ export class GameComponent {
           if (mensajeElement) {
             mensajeElement.innerText = `¡Respuesta correcta, + 5 puntos! Escucha la canción...\nTiempo restante: ${tiempoRestante} segundos`;
           }
-
+  
           if (tiempoRestante <= 0) {
             clearInterval(countdownInterval);
           }
         }, 1000);
       };
-
+  
       // Cuando el audio termine de sonar, pasa al siguiente acertijo
       audio.onended = () => {
         this.indiceAcertijoActual++;
@@ -84,15 +84,9 @@ export class GameComponent {
           this.cd.detectChanges();  // Detecta los cambios
           this.ocultarRespuesta();
         } else {
-          console.log('¡Felicidades, has terminado todos los acertijos!');
+          this.finJuego();
         }
       };
-
-      
-
- 
-
-      
     } else {
       // La respuesta del jugador es incorrecta
       this.puntuacion -= 2;
@@ -107,7 +101,7 @@ export class GameComponent {
           this.cd.detectChanges();  // Detecta los cambios
           this.ocultarRespuesta();
         } else {
-          console.log('¡Felicidades, has terminado todos los acertijos!');
+          this.finJuego();
         }
       }, 2000); // Esperar 2 segundos antes de pasar al siguiente acertijo
       
@@ -137,16 +131,20 @@ export class GameComponent {
   mostrarRespuesta(mensaje: string) {
     this.mensaje = mensaje;
     const mensajeRespuesta = document.getElementById('mensaje-solucion');
+  
     if (mensajeRespuesta) {
+      mensajeRespuesta.innerText = '';
+      mensajeRespuesta.innerText = mensaje;
       mensajeRespuesta.style.display = 'block';
     }
-    console.log(mensajeRespuesta)
+   
   }
 
   ocultarRespuesta() {
     this.mensaje = '';
     const mensajeRespuesta = document.getElementById('mensaje-solucion');
     if (mensajeRespuesta) {
+      mensajeRespuesta.innerText = '';
       mensajeRespuesta.style.display = 'none';
     }
   }
@@ -157,6 +155,20 @@ export class GameComponent {
       const j = Math.floor(Math.random() * (i + 1));
       [array[i], array[j]] = [array[j], array[i]]; // Intercambiar elementos
     }
+  }
+
+  finJuego() {
+    const mensajeFinal = document.getElementById('finPartida');
+    if (mensajeFinal) {
+      mensajeFinal.style.display = 'block';
+      setTimeout(() => {
+        window.location.href = '/index';
+      }, 10000);
+    }
+  }
+
+  redirect() {
+    window.location.href = '/index';
   }
 
 

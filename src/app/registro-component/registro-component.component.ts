@@ -36,6 +36,7 @@ export class RegistroComponentComponent {
       this.servicio.registerUser(newUser).subscribe({
         next: (response) => {
           if (response.success) {
+            
             // Authenticate the user after successful registration
             this.autserv.iniciarSesion(email, contrasena).subscribe({
               next: () => {

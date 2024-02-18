@@ -193,8 +193,8 @@ router.get('/acertijos', (req, res) => {
 });
 
 router.post('/acertijos', (req, res) => {
-  const { id_juego, cancion_url, imagen_url, pista, solucion } = req.body;
-  const nuevoAcertijo = {id_juego,cancion_url, imagen_url, pista, solucion,pregunta };
+  const { id_juego, cancion_url, imagen_url, pista, solucion, pregunta } = req.body;
+  const nuevoAcertijo = {id_juego,cancion_url, imagen_url, pista, solucion, pregunta };
   connection.query('INSERT INTO acertijo SET ?', nuevoAcertijo, (err, result) => {
     if (err) {
       console.error("Error al agregar acertijo:", err);
@@ -226,6 +226,16 @@ router.put('/acertijos/:id', (req, res) => {
     res.send(result);
   });
 });
+
+router.delete('/acertijos/:id', (req, res) => { 
+  console.log('Solicitud de eliminación de acertijo recibida');
+  const acertijoId = req.params.id;
+  console.log('Eliminando acertijo con id:', acertijoId);
+  connection.query('DELETE FROM acertijo WHERE id_ac = ?', acertijoId, (err, result) => {
+    if (err) throw err;
+    res.send(result);
+  });
+} );
 
 
 

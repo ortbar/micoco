@@ -54,6 +54,11 @@
     </div>
   </div>
 </div>
+
+<div id="finPartida" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center;">
+  <h1>¡Felicidades, has terminado todos los acertijos! <br> Su puntuación final ha sido de {{this.puntuacion}} {{this.puntuacion == 1 || this.puntuacion == -1 ? 'punto' : 'puntos'}}</h1>
+  <button class="btn btn-primary" id="reiniciarJuego" (click)="redirect()">Inicio</button>
+</div>
     
 </body>
 </html>

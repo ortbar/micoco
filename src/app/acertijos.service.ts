@@ -37,8 +37,8 @@ export class AcertijosService {
   }
 
   deleteAcertijo(id: number): Observable<Acertijo> {
-    const url = `${this.apiUrl}/${id}`;
-    return this.http.delete<Acertijo>(url);
+    const url = `${this.apiUrl}/acertijos/${id}`;
+    return this.http.delete<Acertijo>(url, {responseType: 'json'} );
   }
 
   updateAcertijo(acertijo: Acertijo): Observable<Acertijo> {

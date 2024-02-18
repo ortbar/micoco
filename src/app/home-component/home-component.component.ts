@@ -42,18 +42,21 @@ export class HomeComponentComponent {
       email: ['', [Validators.required, Validators.email, Validators.pattern(/[a-zA-Z0-9._%+-]+@gmail\.com$/)]],
       contrasena: ['', [Validators.required, Validators.minLength(6), Validators.pattern(/^(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]+$/)]],
     });
-  }
+      this.authSubscription = this.userService.getUserRegisteredObservable().subscribe(() => {
+        this.getUsuarios();
+      });
+    }
 
-  getUsuarios() {
-    this.userService.getUsuarios().subscribe({
-      next: (data) => {
-        this.usuarios = data;
-        console.log(this.usuarios);
-      },
-      error: (error) => {
-        console.error(error);
-      }
-    });
+    getUsuarios() {
+      this.userService.getUsuarios().subscribe({
+        next: (data) => {
+          this.usuarios = data;
+          console.log(this.usuarios);
+        },
+        error: (error) => {
+          console.error(error);
+        }
+      });
   }
 
   agregarUsuario() {
