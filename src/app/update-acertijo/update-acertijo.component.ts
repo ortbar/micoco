@@ -37,7 +37,7 @@ export class UpdateAcertijoComponent {
       imagen_url: ['', Validators.required],
       pista: ['', Validators.required],
       solucion: ['', Validators.required],
-      pregunta: ['', Validators.required]
+      
 
     });
 

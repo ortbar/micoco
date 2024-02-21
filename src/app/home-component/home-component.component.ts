@@ -59,7 +59,17 @@ export class HomeComponentComponent {
       });
   }
 
+
+  // modificara la funcion agregar para que no se registre al usuarioa hasta que se haya validado el formulario
   agregarUsuario() {
+
+    if (this.cuadroNombre === '' || this.cuadroEmail === '' || this.cuadroContrasena === '' || this.cuadroRol === '' || this.cuadroTema_interfaz === '' || this.cuadroIdioma === '' || this.cuadroUltimo_acceso === '') {
+      console.log('Favor de llenar todos los campos');
+      return;
+    }
+    
+
+
     const nuevoUsuario = {
       nombre: this.cuadroNombre,
       email: this.cuadroEmail,

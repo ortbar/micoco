@@ -18,8 +18,12 @@ import { LoginComponentComponent } from "./login-component/login-component.compo
 import { CommonModule } from '@angular/common';
 import { GameComponent } from './game/game.component';
 import { AcertijosService } from './acertijos.service';
+import { JuegoServiceService } from './juego-service.service';
+
+
 import { AcertijosComponentComponent } from './acertijos-component/acertijos-component.component';
 import { UpdateAcertijoComponent } from './update-acertijo/update-acertijo.component';
+import { JuegosComponent } from './juegos/juegos.component';
 
 @NgModule({
     declarations: [
@@ -34,6 +38,7 @@ import { UpdateAcertijoComponent } from './update-acertijo/update-acertijo.compo
       AcertijosComponentComponent,
       HomeComponentComponent,
       GameComponent,
+      JuegosComponent,
     ],
     imports: [
       CommonModule,
@@ -56,7 +61,7 @@ import { UpdateAcertijoComponent } from './update-acertijo/update-acertijo.compo
       UpdateAcertijoComponent,
       
     ],
-    providers: [DataServiceService, AuthService,AcertijosService],
+    providers: [DataServiceService, AuthService,AcertijosService,JuegoServiceService, JwtHelperService],
     bootstrap: [AppComponent],
 })
 export class AppModule { }

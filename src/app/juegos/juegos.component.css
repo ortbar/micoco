@@ -1,0 +1,67 @@
+.container {
+    margin-bottom: 20px;
+  }
+  
+  body {
+    background: #ecf0f3;
+  }
+  
+  /* Estilos para el formulario */
+  .form-container {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Estilos para la tabla */
+  .table-container {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+  }
+  
+  /* Estilo para las opciones de la tabla */
+  .btn-options {
+    margin-left: 0.5rem; /* Ajusta el margen entre los botones */
+    padding: 4px 8px; /* Ajusta el relleno de los botones */
+  }
+  
+  .btn-options + .btn-options {
+    margin-left: 10px; /* Agrega un espacio adicional entre los botones */
+  }
+  
+  /* Reduce el tamaño de los botones */
+  .btn-sm {
+    /* padding: 4px 4px; */
+    font-size: 8px;
+  }
+  
+  /* Centra el contenido de la tabla */
+  .table {
+    margin: auto;
+  }
+  
+  /* Ajusta el tamaño de las celdas de la tabla */
+  .table td, .table th {
+    padding: 8px;
+    font-size: 14px;
+  }
+  
+  .error-message {
+    color: red;
+    font-size: 14px;
+    margin-top: 5px; /* Ajusta el espacio entre el campo y el mensaje de error */
+  }
+  
+  .a {
+    padding: 5px 10px;
+    border-radius: 5px;
+    margin-right: 5px;
+    margin-left: 5px;
+    border-left: 5px;
+  }
+  
+  /* Agrega espacio entre los enlaces "Actualizar" y "Eliminar" */
+  .a + .a {
+    margin-left: 10px;
+  }

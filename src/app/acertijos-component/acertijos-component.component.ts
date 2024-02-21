@@ -11,7 +11,7 @@ import { Validators, FormGroup, FormBuilder } from '@angular/forms';
 })
 export class AcertijosComponentComponent implements OnInit {
 
-  constructor(private acertijoService: AcertijosService, private formBuilder: FormBuilder) { }
+  constructor(private acertijoService: AcertijosService, private formBuilder: FormBuilder,private router:Router) { }
   acertijoForm: FormGroup;
   mensaje: string = "acertijos";
   acertijos: Acertijo[]=[];
@@ -41,6 +41,7 @@ export class AcertijosComponentComponent implements OnInit {
         this.acertijos.push(acertijo);
         this.getAcertijos();
         this.acertijoForm.reset();
+        
       });
     } else {
       console.error("Formulario no válido");
@@ -52,8 +53,8 @@ export class AcertijosComponentComponent implements OnInit {
     this.acertijoService.deleteAcertijo(id).subscribe({
       next: () => {
         console.log('Acertijo eliminado con éxito');
-        this.getAcertijos();
-
+        location.href = '/acertijos';
+        
 
         
         // Aquí puedes agregar código para manejar lo que sucede después de que el acertijo se elimina con éxito.

@@ -237,6 +237,55 @@ router.delete('/acertijos/:id', (req, res) => {
   });
 } );
 
+router.get('/juegos', (req, res) => {
+  console.log('Solicitud de juegos recibida');
+  connection.query('SELECT * FROM juego', (err, result) => {
+    if (err) throw err;
+    res.send(result);
+  });
+});
+
+router.post('/juegos', (req, res) => {
+  console.log('Solicitud de agregar juego recibida');
+
+  const { nombre, descripcion, imagen } = req.body;
+  
+  const nuevoJuego = { nombre, descripcion, imagen };
+
+
+ let error = [];
+
+    if (!nombre || !descripcion || !imagen) {
+      error.push({ mensaje: 'Por favor ingrese todos los campos' });
+    }
+
+    if (nombre.trim().length < 0) {
+      error.push({ mensaje: 'La longitud del nombre debe de ser mayor que 0' });
+    }
+
+    if (descripcion.trim().length < 0) {
+      error.push({ mensaje: 'La longitud de la descripción debe de ser mayor que 0' });
+    }
+
+    if (imagen.trim().length < 0) {
+      error.push({ mensaje: 'La longitud de la imagen debe de ser mayor que 0' });
+    }
+
+    if (error.length > 0) {
+      return res.status(400).json({ mensaje: error, success: false });
+    }
+
+  connection.query('INSERT INTO juego SET ?', nuevoJuego, (err, result) => {
+    if (err) {
+      console.error("Error al agregar juego:", err);
+      res.status(500).json("Error interno del servidor al agregar juego");
+    } else {
+      console.log("Juego agregado correctamente:", result);
+      res.status(200).json("Juego agregado correctamente");
+    }
+  });
+});
+
 
 
 

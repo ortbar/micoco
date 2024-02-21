@@ -1,0 +1,10 @@
+quien es 	pitingo 	./assets/images/twingo.jpg;./assets/images/numerop... 	./assets/audios/pitingo.mp3 	quien es
+tu me camelas 	niña pastori 	./assets/images/ninja.jpg;./assets/images/pastori.... 	./assets/audios/ninapastori.mp3 	artista
+raw alejandro 	rosalia 	./assets/images/liodecables.jpg;./assets/images/ro... 	./assets/audios/rosalia.mp3 	TRA TRA
+torero 	curro romero 	./assets/images/romero.jpg;./assets/images/curro.w... 	./assets/audios/gatomontes.mp3 	artista
+tenista 	rafa nadal 	./assets/images/nadar.jpg;./assets/images/raphael.... 	./assets/audios/raphael.mp3 	quien es
+Sergio ramos 	pilar rubio 	./assets/images/rubiojpg.jpg;./assets/images/pilar... 	./assets/audios/hormiguero.mp3 	presentadora de tv
+rock 	los ronaldos 	./assets/images/ronaldo.jpg;./assets/images/cristi... 	./assets/audios/adiopapa.mp3 	grupo de rock
+boxeo 	rocky 	./assets/images/ojodetigre.jpg;./assets/images/gua... 	./assets/audios/ojodetigre.mp3 	qué película?
+grupo de los 80s 	heroes del silencio 	./assets/images/silencio.jpg;./assets/images/heroe... 	./assets/audios/heroes.mp3 	quien canta?
+Jesucristo superstrar 	camilo sesto 	./assets/images/minicamilo.png;./assets/images/cam... 	./assets/audios/camilosesto.mp3 	quien canta?
