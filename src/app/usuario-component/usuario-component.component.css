@@ -1,6 +1,66 @@
+.container {
+  margin-bottom: 20px;
+}
+
+body {
+  background: #ecf0f3;
+}
+
+.form-container {
+  background-color: #f8f9fa;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.table-container {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+.btn-options {
+  margin-left: 0.5rem;
+  padding: 4px 8px;
+}
+
+.btn-options + .btn-options {
+  margin-left: 10px;
+}
+
+.btn-sm {
+  font-size: 8px;
+}
+
+.table {
+  margin: auto;
+}
+
+.table td, .table th {
+  padding: 8px;
+  font-size: 14px;
+}
+
+.error-message {
+  color: red;
+  font-size: 14px;
+  margin-top: 5px;
+  text-align: center;
+}
+
+.a {
+  padding: 5px 10px;
+  border-radius: 5px;
+  margin-right: 5px;
+  margin-left: 5px;
+  border-left: 5px;
+}
+
+.a + .a {
+  margin-left: 10px;
+}
 
 .custom-link {
-    color: #007bff; /* Cambia el color del enlace según tus preferencias */
-    text-decoration: none; /* Elimina el subrayado predeterminado */
-    cursor: pointer; /* Cambia el cursor al pasar sobre el enlace */
-  }
+  color: #007bff;
+  text-decoration: none;
+  cursor: pointer;
+}

@@ -15,6 +15,7 @@ export class AcertijosComponentComponent implements OnInit {
   acertijoForm: FormGroup;
   mensaje: string = "acertijos";
   acertijos: Acertijo[]=[];
+  error="";
 
   getAcertijos(): void {
     this.acertijoService.getAcertijos().subscribe(acertijos => this.acertijos = acertijos);
@@ -44,7 +45,7 @@ export class AcertijosComponentComponent implements OnInit {
         
       });
     } else {
-      console.error("Formulario no válido");
+      this.error="Rellena los campos";
     }
   }
 

@@ -245,36 +245,11 @@ router.get('/juegos', (req, res) => {
   });
 });
 
+
 router.post('/juegos', (req, res) => {
-  console.log('Solicitud de agregar juego recibida');
-
+  console.log('Solicitud de creación de juego recibida');
   const { nombre, descripcion, imagen } = req.body;
-  
   const nuevoJuego = { nombre, descripcion, imagen };
-
-
- let error = [];
-
-    if (!nombre || !descripcion || !imagen) {
-      error.push({ mensaje: 'Por favor ingrese todos los campos' });
-    }
-
-    if (nombre.trim().length < 0) {
-      error.push({ mensaje: 'La longitud del nombre debe de ser mayor que 0' });
-    }
-
-    if (descripcion.trim().length < 0) {
-      error.push({ mensaje: 'La longitud de la descripción debe de ser mayor que 0' });
-    }
-
-    if (imagen.trim().length < 0) {
-      error.push({ mensaje: 'La longitud de la imagen debe de ser mayor que 0' });
-    }
-
-    if (error.length > 0) {
-      return res.status(400).json({ mensaje: error, success: false });
-    }
-
   connection.query('INSERT INTO juego SET ?', nuevoJuego, (err, result) => {
     if (err) {
       console.error("Error al agregar juego:", err);
@@ -283,6 +258,36 @@ router.post('/juegos', (req, res) => {
       console.log("Juego agregado correctamente:", result);
       res.status(200).json("Juego agregado correctamente");
     }
+  });
+});
+
+router.get('/juegos/:id', (req, res) => {
+  console.log('Solicitud de juego recibida');
+  const juegoId = req.params.id;
+  connection.query('SELECT * FROM juego WHERE id_juego = ?', juegoId, (err, result) => {
+    if (err) throw err;
+    res.send(result[0]);
+  });
+});
+
+router.put('/juegos/:id', (req, res) => {
+  console.log('Solicitud de actualización de juego recibida');
+  const juegoId = req.params.id;
+  const { nombre, descripcion, imagen } = req.body;
+  const juegoActualizado = { nombre, descripcion, imagen };
+  connection.query('UPDATE juego SET ? WHERE id = ?', [juegoActualizado, juegoId], (err, result) => {
+    if (err) throw err;
+    res.send(result);
+  });
+});
+
+router.delete('/juegos/:id', (req, res) => {
+  console.log('Solicitud de eliminación de juego recibida');
+  const juegoId = req.params.id;
+  console.log('Eliminando juego con id:', juegoId);
+  connection.query('DELETE FROM juego WHERE id = ?', juegoId, (err, result) => {
+    if (err) throw err;
+    res.send(result);
   });
 });
 

@@ -12,11 +12,24 @@ import { Juego } from '../juego-model';
 export class JuegosComponent {
 
   constructor(private servicio: JuegoServiceService, private fb: FormBuilder, private router: Router) { }
-
+  
   juegos: Juego[] = [];
   errorMessage: string = '';
-
+  
   juegoForm:FormGroup;
+  editingJuego: Juego | null = null;
+
+
+  openEditForm(juego: Juego) {
+    this.editingJuego = juego;
+    this.juegoForm.setValue({
+      nombre: juego.nombre,
+      descripcion: juego.descripcion,
+      imagen: juego.imagen
+    });
+  }
+
+
 
 
   ngOnInit() {
@@ -24,10 +37,27 @@ export class JuegosComponent {
     this.juegoForm = this.fb.group({
       nombre: ['', Validators.required],
       descripcion: ['', Validators.required],
-      imagen_url: ['', Validators.required],
+      imagen: ['', Validators.required],
       
     });
   } 
+
+  updateJuego() {
+    if (this.juegoForm.valid && this.editingJuego) {
+      const juegoToUpdate = { ...this.editingJuego, ...this.juegoForm.value };
+      this.servicio.updateJuego(juegoToUpdate).subscribe({
+        next: juego => {
+          this.servicio.getJuegos().subscribe(juegos => this.juegos = juegos);
+          this.editingJuego = null; // Esto cerraría el formulario de edición.
+        },
+        error: error => {
+          console.error('Hubo un error al actualizar el juego:', error);
+        }
+      });
+    } else {
+      this.errorMessage='Rellena los campos';
+    }
+  }
 
   getJuegos() {
     this.servicio.getJuegos().subscribe(juegos => this.juegos = juegos);
@@ -43,8 +73,41 @@ export class JuegosComponent {
     } else {
       // Puedes agregar aquí cualquier acción que quieras realizar cuando el formulario no es válido.
       // Por ejemplo, podrías mostrar un mensaje de error al usuario.
-      this.errorMessage = 'Por favor, rellena todos los campos requeridos.';
+      this.errorMessage='Rellena los campos';
     }
+  }
+
+getJuegoById(id: number): void {
+    this.servicio.getJuegoById(id).subscribe({
+      next: juego => {
+        console.log(juego);
+        this.router.navigate(['/actualiza-juego', id]);
+      },
+      error: error => {
+        console.error('Hubo un error al obtener el juego:', error);
+      }
+    });
+  }
+
+
+
+
+
+
+
+  deleteJuego(id: number): void {
+    this.servicio.deleteJuego(id).subscribe({
+      next: () => {
+        console.log('juego eliminado eliminado con éxito');
+        this.servicio.getJuegos().subscribe(juegos => {
+          this.juegos = juegos;
+          location.href = '/juegos';
+        });
+      },
+      error: error => {
+        console.error('Hubo un error al eliminar el juego:', error);
+      }
+    });
   }
 
 }

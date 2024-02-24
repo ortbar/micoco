@@ -1,45 +1,75 @@
+<div class="container mt-4 form-container">
+  <form [formGroup]="usuarioForm" (ngSubmit)="addUser()">
+    <div class="mb-3">
+    
+
+      <label for="nombre" class="form-label">Nombre</label>
+      <input type="text" id="nombre" class="form-control" formControlName="nombre" required>
+      <div *ngIf="usuarioForm.get('nombre')?.touched && usuarioForm.get('nombre')?.hasError('required')" class="error-message">
+        Nombre es obligatorio.
+      </div>
+      <div *ngIf="usuarioForm.get('nombre')?.touched" class="error-message">
+        El nombre esta mal
+      </div>
+      
+
+      <label for="email" class="form-label">Email</label>
+      <input type="email" id="email" class="form-control" formControlName="email" required>
+      <div *ngIf="usuarioForm.get('email')?.hasError('pattern')" class="error-message">
+        Debe ser una dirección de correo electrónico válida que termine en &#64;gmail.com.
+      </div>
+      <div *ngIf="usuarioForm.get('email')?.touched" class="error-message">
+        No se
+      </div>
+   
+      <label for="contrasena" class="form-label">Contraseña</label>
+      <input type="password" id="contrasena" class="form-control" formControlName="contrasena" required>
+      <div *ngIf="usuarioForm.get('contrasena')?.hasError('required') && usuarioForm.get('contrasena')?.touched" class="error-message">
+        Contraseña es obligatorio.
+      </div>
+
+   
+    </div>
+
+    <button type="submit" class="btn btn-primary">Agregar Usuario</button>
+    <a routerLink="/index" class="btn btn-link">Volver</a>
+  </form>
+</div>
+
+<div *ngIf="mensajeErrorSubscribe" class="error-message">
+  {{ mensajeErrorSubscribe }}
+</div>
+
+
+
+
 <div class="container mt-4">
   <div class="table-responsive">
     <table class="table table-striped table-bordered table-hover text-center">
       <thead class="table-dark">
         <tr>
-          <th>Id</th>
+          
           <th>Nombre</th>
           <th>Email</th>
           <th>Contraseña</th>
-          <th>Rol</th>
-          <th>Tema Interfaz</th>
-          <th>Idioma</th>
-          <th>Último Acceso</th>
           <th>Acciones</th>
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>{{ usuarioDeLista.id}}</td>
-          <td>{{ usuarioDeLista.nombre }}</td>
-          <td>{{ usuarioDeLista.email }}</td>
-          <td>{{ usuarioDeLista.contrasena }}</td>
-          <td>{{ usuarioDeLista.rol }}</td>
-          <td>{{ usuarioDeLista.tema_interfaz }}</td>
-          <td>{{ usuarioDeLista.idioma }}</td>
-          <td>{{ usuarioDeLista.ultimo_acceso }}</td>
-          <td>
-            <a [routerLink]="['/actualiza-usuario', usuarioDeLista.id]" >Editar</a>
+        <tr *ngFor="let usuario of usuarios">
             
+          <td>{{ usuario.nombre }}</td>
+          <td>{{ usuario.email }}</td>
+          <td>{{ usuario.contrasena }}</td>
+         
+          
+       
+          <td>
+            <button type="button" class="btn btn-primary mr-2" [routerLink]="['/actualiza-usuario', usuario.id]">Editar</button>
+            <button type="button" class="btn btn-danger" (click)="deleteUser(usuario.id)">Eliminar</button>
           </td>
         </tr>
       </tbody>
     </table>
   </div>
-
-  <div style="margin-top: 20px;"></div>
-
-  <app-caracteristicas-usuario (caracteristicasEmpleados)="agregarCaracteristicas($event)"></app-caracteristicas-usuario>
-
-  <div style="margin-top: 20px;"></div>
-
-  <ul style="list-style: circle; margin-top: 20px;">
-    <li *ngFor="let caracteristica of arrayCaracteristicas">{{ caracteristica }}</li>
-  </ul>
 </div>

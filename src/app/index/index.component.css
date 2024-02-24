@@ -9,10 +9,11 @@ body {
   background-position: center;
 }
 
-.card {
+.container {
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 100vh;
 }
 
 .start-button {
@@ -23,8 +24,18 @@ body {
   cursor: pointer;
   background-color: rgba(0, 0, 0, 0.5); /* Cambia a cualquier color RGBA que prefieras */
   margin-top: 50px;
+  border-radius: 15px;
+  transform: translateY(-75px); /* Mueve el botón 20px hacia arriba */
+  background-image: src('./assets/images/numeropi.jpg');
 }
 
 .start-button:hover {
   background-color: rgba(0, 0, 0, 0.7); /* Cambia a cualquier color RGBA que prefieras */
+}
+
+
+
+a {
+  text-decoration: none;
+  color: white;
 }

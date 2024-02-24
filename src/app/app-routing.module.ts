@@ -12,19 +12,22 @@ import { GameComponent } from './game/game.component';
 import { AcertijosComponentComponent } from './acertijos-component/acertijos-component.component';
 import { UpdateAcertijoComponent } from './update-acertijo/update-acertijo.component';
 import { JuegosComponent } from './juegos/juegos.component';
+import { UsuarioComponentComponent } from './usuario-component/usuario-component.component';
 
 const routes: Routes = [
   {path:'dashboard', component:HomeComponentComponent},  // se ha desactivado el guard para poder ver el Home
   { path: 'index', component: IndexComponent },       // se ha desactivado el guard para poder ver el index
   { path: 'game', component: GameComponent, canActivate: [AuthGuard] },
-  { path: 'usuarios', component: AppComponent},
+  { path: 'usuarios', component: UsuarioComponentComponent},
   {path: 'acertijos', component:AcertijosComponentComponent},
   { path: 'estadisticas', component: EstadisticasComponentComponent },
   { path: 'actualiza-usuario/:id', component: ActualizaComponentComponent },
   { path: 'registro', component: RegistroComponentComponent},
-  // { path: '', component: LoginComponentComponent},
+  { path: '', component: LoginComponentComponent},
   { path: 'actualiza-acertijo/:id',component: UpdateAcertijoComponent},
-  { path: '', component: JuegosComponent},
+  { path: 'juegos', component: JuegosComponent},
+  { path: 'actualiza-juego/:id', component: JuegosComponent}
+  
 
 
 

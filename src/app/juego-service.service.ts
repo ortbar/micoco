@@ -21,12 +21,25 @@ export class JuegoServiceService {
 
   }
 
-
-
-  
+  getJuegoById(id: number): Observable<Juego> {
+    const url = `${this.apiUrl}/juegos/${id}`;
+    return this.http.get<Juego>(url);
+  }
+ 
 
   addJuego(juego: Juego): Observable<Juego> {
     return this.http.post<Juego>(this.apiUrl + '/juegos', juego);
     
   } 
+
+  updateJuego(juego: Juego): Observable<Juego> {
+    const url = `${this.apiUrl}/juegos/${juego.id}`;  
+    return this.http.put<Juego>(url, juego);
+  }
+ 
+
+  deleteJuego(id: number): Observable<Juego> {
+    const url = `${this.apiUrl}/juegos/${id}`;
+    return this.http.delete<Juego>(url, {responseType: 'json'} );
+  }
 }

@@ -21,6 +21,7 @@ export class HomeComponentComponent {
 
   registroForm: FormGroup;
   mensajeError: string="";
+  
 
   bienvenidas = "";
 
@@ -35,6 +36,7 @@ export class HomeComponentComponent {
   usuarios: Usuario[] = [];
 
   ngOnInit() {
+   
     this.getUsuarios();
     this.bienvenida();
     this.registroForm = this.fb.group({
@@ -63,10 +65,16 @@ export class HomeComponentComponent {
   // modificara la funcion agregar para que no se registre al usuarioa hasta que se haya validado el formulario
   agregarUsuario() {
 
-    if (this.cuadroNombre === '' || this.cuadroEmail === '' || this.cuadroContrasena === '' || this.cuadroRol === '' || this.cuadroTema_interfaz === '' || this.cuadroIdioma === '' || this.cuadroUltimo_acceso === '') {
-      console.log('Favor de llenar todos los campos');
-      return;
-    }
+    // if (this.cuadroNombre === '' || this.cuadroEmail === '' || this.cuadroContrasena === '' || this.cuadroRol === '' || this.cuadroTema_interfaz === '' || this.cuadroIdioma === '' || this.cuadroUltimo_acceso === '') {
+    //   console.log('Favor de llenar todos los campos');
+    //   return;
+    // }
+
+    
+
+
+
+    
     
 
 
@@ -88,8 +96,7 @@ export class HomeComponentComponent {
         });
       },
       error: (error) => {
-        console.error('Error al agregar el usuario:', error);
-      }
+this.mensajeError = "Rellena los campos correctamente"; }
     });
   }
 

@@ -37,7 +37,7 @@
     <div *ngIf="registroForm.get('contrasena')?.hasError('pattern') && registroForm.get('contrasena')?.touched"
          class="error-message">Contraseña debe contener números y letras uno de ellos caracter especial</div>
   </div>
-  <button type="submit" class="btn btn-primary">Agregar Usuario</button>
+  <button type="submit" class="btn btn-primary" class="formControlName">Agregar Usuario</button>
   
 </form>
 <div *ngIf="mensajeError" class="error-message">
@@ -45,11 +45,8 @@
    </div>
 
   
-  <!-- etigueta para incluir al comp hijo dentro del comp padre -->
-  <!-- teneemos que pasar informacion del comp padre al hijo ,para ello pasamos la declaracion de estas dos variables, para que el comp hijo los reconozoca. como se hace? con el dec @iNPUT -->
-  <!-- y luego se les hace referencia en el componente hijo -->
+  
   <br><br>
-  <app-usuario-component *ngFor="let usuario of usuarios; let i = index" [usuarioDeLista]="usuario" [indice]="i"></app-usuario-component>
   
   
   

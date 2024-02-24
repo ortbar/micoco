@@ -17,6 +17,7 @@ import { ChangeDetectorRef } from '@angular/core';
 export class RegistroComponentComponent {
   registroForm: FormGroup;
   mensajeError: string="";
+  mensajeErrorr: string="";
 
   constructor(private fb: FormBuilder, private servicio: DataServiceService, private router: Router,private autserv:AuthService,private cdr: ChangeDetectorRef) {}
 
@@ -29,14 +30,15 @@ export class RegistroComponentComponent {
     });
   }
   registrar() {
-    if (this.registroForm?.valid) {
+    if (this.registroForm.valid) {
+
+      
       const { nombre, email, contrasena } = this.registroForm.value;
       const newUser = new Usuario(nombre, email, contrasena, 'jugador', '', '', new Date());
   
       this.servicio.registerUser(newUser).subscribe({
         next: (response) => {
           if (response.success) {
-            
             // Authenticate the user after successful registration
             this.autserv.iniciarSesion(email, contrasena).subscribe({
               next: () => {
@@ -65,13 +67,32 @@ export class RegistroComponentComponent {
         },
         error: (error) => {
           console.error('Error al registrar usuario:', error);
-          this.mensajeError = 'Error en el registro. Inténtalo de nuevo más tarde.';
+          this.mensajeErrorr = 'Error en el registro. Inténtalo de nuevo más tarde.';
         }
       });
+    } else {
+      this.mensajeErrorr = 'Por favor, rellena todos los campos requeridos.';
     }
   }
 
+  /*addJuego() {
+    if (this.juegoForm.valid) {
+      this.servicio.addJuego(this.juegoForm.value).subscribe(juego => {
+        this.juegos.push(juego);
+        this.juegoForm.reset();
+        this.servicio.getJuegos().subscribe(juegos => this.juegos = juegos);
+      });
+    } else {
+      // Puedes agregar aquí cualquier acción que quieras realizar cuando el formulario no es válido.
+      // Por ejemplo, podrías mostrar un mensaje de error al usuario.
+      this.errorMessage = 'Por favor, rellena todos los campos requeridos.';
+    }
+  } */
+
+
+  }
+
   
-}
+
 
   
