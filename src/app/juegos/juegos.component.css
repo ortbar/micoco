@@ -36,6 +36,22 @@ body {
   font-size: 8px;
 }
 
+/* Estilo para el enlace "Eliminar" */
+.delete-link {
+  color: red; /* Cambia el color del enlace a rojo */
+  margin-left: 15px; /* Aumenta el espacio a la izquierda del enlace */
+}
+
+/* Estilo para el botón "Editar" */
+.edit-button {
+  margin-right: 15px; /* Añade un margen a la derecha del botón */
+  margin-right: 15px; /* Añade un margen a la derecha del botón */
+  background: none; /* Elimina el fondo del botón */
+  border: none; /* Elimina el borde del botón */
+  color: blue; /* Cambia el color del texto a azul */
+  cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+}
+
 /* Centra el contenido de la tabla */
 .table {
   margin: auto;
@@ -53,26 +69,13 @@ body {
   margin-top: 5px; /* Ajusta el espacio entre el campo y el mensaje de error */
 }
 
-.a {
-  padding: 5px 10px;
-  border-radius: 5px;
-  margin-right: 5px;
-  margin-left: 5px;
-  border-left: 5px;
-}
-
 /* Agrega espacio entre los enlaces "Actualizar" y "Eliminar" */
 .a + .a {
   margin-left: 50px;
 }
 
-/* Estilo para el enlace "Eliminar" */
-.delete-link {
-  color: red; /* Cambia el color del enlace a rojo */
-  margin-left: 15px; /* Aumenta el espacio a la izquierda del enlace */
-}
-
-/* Estilo para el botón "Editar" */
-.edit-button {
-  margin-right: 15px; /* Añade un margen a la derecha del botón */
+.btn-delete {
+  color: red; /* Color de texto rojo */
+  cursor: pointer; /* Cambia el cursor al pasar sobre el enlace */
+ 
 }

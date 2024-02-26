@@ -24,6 +24,7 @@ import { JuegoServiceService } from './juego-service.service';
 import { AcertijosComponentComponent } from './acertijos-component/acertijos-component.component';
 import { UpdateAcertijoComponent } from './update-acertijo/update-acertijo.component';
 import { JuegosComponent } from './juegos/juegos.component';
+import { PartidaService } from './partida.service';
 
 @NgModule({
     declarations: [
@@ -61,7 +62,7 @@ import { JuegosComponent } from './juegos/juegos.component';
       UpdateAcertijoComponent,
       
     ],
-    providers: [DataServiceService, AuthService,AcertijosService,JuegoServiceService, JwtHelperService],
+    providers: [DataServiceService, AuthService,AcertijosService,JuegoServiceService, JwtHelperService,PartidaService],
     bootstrap: [AppComponent],
 })
 export class AppModule { }

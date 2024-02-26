@@ -100,7 +100,7 @@ constructor(private userService: DataServiceService, private route:ActivatedRout
       next: (usuario: Usuario) => {
         console.log('Usuario actualizado:', usuario);
         // Opcionalmente, puedes redirigir a otra página después de la actualización
-        this.router.navigate(['dashboard']);
+        this.router.navigate(['usuarios']);
       },
       error: (error) => {
         console.error('Error al actualizar el usuario:', error);
@@ -113,7 +113,7 @@ constructor(private userService: DataServiceService, private route:ActivatedRout
       next: (result) => {
         console.log('Usuario eliminado con éxito:', result);
         // Opcionalmente, puedes redirigir a otra página después de la eliminación
-        this.router.navigate(['dashboard']);
+        this.router.navigate(['usuarios']);
       },
       error: (error) => {
         console.error('Error al eliminar el usuario:', error);

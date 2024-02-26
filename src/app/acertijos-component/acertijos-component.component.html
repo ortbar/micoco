@@ -90,7 +90,7 @@
           <td>{{ acertijo.pregunta }}</td>
           <td>
             <a [routerLink]="['/actualiza-acertijo', acertijo.id_ac]">Editar</a> <br>  
-            <a (click)="deleteAcertijo(acertijo.id_ac)">Eliminar</a>      
+            <a class="btn-delete" (click)="deleteAcertijo(acertijo.id_ac)">Eliminar</a>    
           </td>
       </tbody>
     </table>

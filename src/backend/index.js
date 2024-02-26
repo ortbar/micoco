@@ -291,7 +291,29 @@ router.delete('/juegos/:id', (req, res) => {
   });
 });
 
+router.post('/partida', (req, res) => {
+  console.log('Solicitud de creación de partida recibida');
+  const { id_usuario, id_juego, fecha, puntos } = req.body;
+  const nuevaPartida = { id_usuario, id_juego, fecha, puntos };
+  connection.query('INSERT INTO partida SET ?', nuevaPartida, (err, result) => {
+    if (err) {
+      console.error("Error al agregar partida:", err);
+      res.status(500).json("Error interno del servidor al agregar partida");
+    } else {
+      console.log("Partida agregada correctamente:", result);
+      res.status(200).json("Partida agregada correctamente");
+    }
+  });
+});
 
+router.getPartidas = (req, res) => {
+  console.log('Solicitud de partidas recibida');
+  connection.query('SELECT * FROM partida', (err, result) => {
+    if (err) throw err; 
+    res.send(result);
+  }
+  );
+}
 
 
 

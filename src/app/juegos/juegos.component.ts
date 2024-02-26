@@ -49,6 +49,7 @@ export class JuegosComponent {
         next: juego => {
           this.servicio.getJuegos().subscribe(juegos => this.juegos = juegos);
           this.editingJuego = null; // Esto cerraría el formulario de edición.
+          this.router.navigate(['juegos']);
         },
         error: error => {
           console.error('Hubo un error al actualizar el juego:', error);

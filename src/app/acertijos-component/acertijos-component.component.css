@@ -35,7 +35,15 @@ body {
   /* padding: 4px 4px; */
   font-size: 8px;
 }
+.btn-delete {
+  color: red; /* Color de texto rojo */
+  text-decoration: underline; /* Subrayado */
+  cursor: pointer; /* Cambia el cursor al pasar sobre el enlace */
+}
 
+.btn-delete:hover {
+  color: darkred; /* Cambia el color del texto cuando pasas el mouse sobre él */
+}
 /* Centra el contenido de la tabla */
 .table {
   margin: auto;
@@ -59,6 +67,11 @@ body {
   margin-right: 5px;
   margin-left: 5px;
   border-left: 5px;
+  text-decoration: none; /* Quita el subrayado */
+}
+
+.a:hover {
+  text-decoration: none; /* Agrega el subrayado solo al pasar el mouse sobre el enlace */
 }
 
 /* Agrega espacio entre los enlaces "Actualizar" y "Eliminar" */

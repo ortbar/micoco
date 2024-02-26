@@ -61,14 +61,13 @@
           <td>{{ usuario.nombre }}</td>
           <td>{{ usuario.email }}</td>
           <td>{{ usuario.contrasena }}</td>
-         
-          
-       
           <td>
-            <button type="button" class="btn btn-primary mr-2" [routerLink]="['/actualiza-usuario', usuario.id]">Editar</button>
-            <button type="button" class="btn btn-danger" (click)="deleteUser(usuario.id)">Eliminar</button>
+            <a [routerLink]="['/actualiza-usuario', usuario.id]" >Editar</a> <br>
+            <a class="btn-delete" (click)="deleteUser(usuario.id)">Eliminar</a>
+            
           </td>
-        </tr>
+          
+          </tr>
       </tbody>
     </table>
   </div>

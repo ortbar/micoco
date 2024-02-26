@@ -1,7 +1,30 @@
 <div class="container mt-4 form-container">
   <form [formGroup]="juegoForm" (ngSubmit)="addJuego()">
     <!-- Aquí va tu formulario para agregar un juego, igual que el que ya tienes -->
+    <div class="mb-3">
+      <label for="nombre" class="form-label">Nombre Juego</label>
+      <input type="text" id="nombre" class="form-control" formControlName="nombre" required>
+      <div *ngIf="juegoForm.get('nombre')?.hasError('required') && juegoForm.get('nombre')?.touched" class="error-message">
+        Nombre es obligatorio.
+      </div>
+      <label for="descripcion" class="form-label">Descripción</label>
+      <input type="text" id="descripcion" class="form-control" formControlName="descripcion" required>
+      <div *ngIf="juegoForm.get('descripcion')?.hasError('required') && juegoForm.get('descripcion')?.touched" class="error-message">
+        Descripción es obligatorio.
+      </div>
+      <label for="imagen" class="form-label">Imagen Juego</label>
+      <input type="text" id="imagen_url" class="form-control" formControlName="imagen" required>
+      <div *ngIf="juegoForm.get('imagen')?.hasError('required') && juegoForm.get('imagen')?.touched" class="error-message">
+        Ruta de la imagen es obligatorio.
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Agregar Juego</button>
+    <a routerLink="/index" class="btn btn-link">Volver</a>
+    <div *ngIf="errorMessage" class="error-message">
+      {{ errorMessage }}
+    </div>
   </form>
+
 </div>
 
 <div class="container mt-4">
@@ -12,6 +35,7 @@
           <th>Nombre</th>
           <th>Descripción</th>
           <th>URL Imagen</th>
+          <th>Acciones</th>
         </tr>
       </thead>
       <tbody>
@@ -20,8 +44,8 @@
           <td>{{ juego.descripcion }}</td>
           <td>{{ juego.imagen }}</td>
           <td>
-            <button type="button" class="edit-button" (click)="openEditForm(juego)" data-bs-toggle="modal" data-bs-target="#editModal">Editar</button>
-            <a (click)="deleteJuego(juego.id)">Eliminar</a>  
+            <button type="button" class="edit-button" (click)="openEditForm(juego)" data-bs-toggle="modal" data-bs-target="#editModal">Editar</button> <br>
+            <a (click)="deleteJuego(juego.id)" class="btn-delete">Eliminar</a>  
           </td>
         </tr>
       </tbody>

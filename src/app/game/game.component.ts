@@ -5,6 +5,12 @@ import { CommonModule } from '@angular/common';
 import { Acertijo } from './acertijo.model'; 
 import { Validators, FormGroup, FormBuilder,FormsModule } from '@angular/forms';
 import { timeInterval } from 'rxjs';
+import { PartidaService } from '../partida.service';
+import { Partida } from '../partida-model';
+import { Usuario } from '../user.model';
+import { Juego } from '../juego-model';
+import { AuthService } from '../auth.service';
+import { Token } from '../login-component/auth.interface';
 
 
 
@@ -30,11 +36,14 @@ export class GameComponent {
   limitAcertijos:number=2;
 
 
+  
+
+
 
   
   
 
-  constructor(private gameService: GameService,private cd: ChangeDetectorRef) { }
+  constructor(private gameService: GameService,private cd: ChangeDetectorRef,private partida: PartidaService,private auth:AuthService) { }
 
 
 
@@ -159,16 +168,46 @@ export class GameComponent {
 
   finJuego() {
     const mensajeFinal = document.getElementById('finPartida');
+   
+
+    // Rest of the code...
+
     if (mensajeFinal) {
       mensajeFinal.style.display = 'block';
       setTimeout(() => {
         window.location.href = '/index';
-      }, 10000);
+      }, 30000);
     }
+
+    // Guardar la partida en la base de datos
+
+    let nuevaPartida = new Partida();
+    
+    
+      
+    nuevaPartida.puntos = this.puntuacion;
+    nuevaPartida.fecha = new Date(); // Fecha actual
+  
+    // Guardar la nueva partida
+    this.partida.enviarPartida(nuevaPartida).subscribe(() => {
+      console.log('Partida guardada con éxito');
+    });
+        
+
+
+
+
+  
+    
+    
+  
   }
 
-  redirect() {
-    window.location.href = '/index';
+ 
+
+    redirect() {
+      window.location.href = '/index';
+    }
   }
 
 
@@ -178,4 +217,3 @@ export class GameComponent {
 
 
 
-}

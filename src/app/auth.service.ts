@@ -29,10 +29,21 @@ export class AuthService {
   }
 
   public setUser(user: User) {
+    localStorage.setItem('id', user.id.toString());
     localStorage.setItem('nombre', user.nombre);
     localStorage.setItem('email', user.email);
     localStorage.setItem('rol', user.rol);
   }
+
+  
+  public getUser(): string | null {
+    return localStorage.getItem('id');
+  }
+
+  public getNombre(): string | null {
+    return localStorage.getItem('nombre');
+  }
+
 
   public getToken(): string | null {
     return localStorage.getItem('token');

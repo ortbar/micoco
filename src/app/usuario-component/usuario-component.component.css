@@ -53,6 +53,11 @@ body {
   margin-right: 5px;
   margin-left: 5px;
   border-left: 5px;
+  text-decoration: none; /* Quita el subrayado */
+}
+
+.a:hover {
+  text-decoration: none; /* Agrega el subrayado solo al pasar el mouse sobre el enlace */
 }
 
 .a + .a {
@@ -63,4 +68,13 @@ body {
   color: #007bff;
   text-decoration: none;
   cursor: pointer;
+}
+
+.btn-delete {
+  color: red; /* Color de texto rojo */
+  cursor: pointer; /* Cambia el cursor al pasar sobre el enlace */
+}
+
+.btn-delete:hover {
+  color: darkred; /* Cambia el color del texto cuando pasas el mouse sobre él */
 }
