@@ -20,9 +20,8 @@ getPartidas(): Observable<Partida[]> {
   return this.http.get<Partida[]>(this.apiUrl + '/partidas');
 }
 
-getPartida(id: string): Observable<Partida> {
-  return this.http.get<Partida>(this.apiUrl + '/partidas/' + id);
-
+getPartidasUserID(id: string): Observable<Partida[]> {
+  return this.http.get<Partida[]>(this.apiUrl + '/partidas/' + id);
 }
 
 

@@ -36,6 +36,8 @@ export class GameComponent {
   limitAcertijos:number=2;
 
 
+
+
   
 
 
@@ -182,11 +184,20 @@ export class GameComponent {
     // Guardar la partida en la base de datos
 
     let nuevaPartida = new Partida();
-    
-    
+  
       
     nuevaPartida.puntos = this.puntuacion;
     nuevaPartida.fecha = new Date(); // Fecha actual
+
+    //hay que parsear el id de usuario a entero ya que localstorage devuelve un string
+    let userId = localStorage.getItem('id');
+
+    if (!userId) {
+      console.error('No se encontró el ID del usuario');
+      return;
+    }
+
+    nuevaPartida.id_usuario = parseInt(userId);
   
     // Guardar la nueva partida
     this.partida.enviarPartida(nuevaPartida).subscribe(() => {

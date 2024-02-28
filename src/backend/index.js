@@ -315,6 +315,16 @@ router.getPartidas = (req, res) => {
   );
 }
 
+router.get('/partidas/:id', (req, res) => {
+  console.log('Solicitud de partida recibida');
+  const partidaId = req.params.id;
+  connection.query('SELECT * FROM partida WHERE id_usuario = ?', partidaId, (err, result) => {
+    if (err) throw err;
+    console.log('Partida encontrada:', result);
+    res.send(result);
+  });
+});
+
 
 
 
