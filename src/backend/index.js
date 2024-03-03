@@ -317,13 +317,21 @@ router.getPartidas = (req, res) => {
 
 router.get('/partidas/:id', (req, res) => {
   console.log('Solicitud de partida recibida');
-  const partidaId = req.params.id;
-  connection.query('SELECT * FROM partida WHERE id_usuario = ?', partidaId, (err, result) => {
+  const userId = req.params.id;
+  connection.query('SELECT * FROM partida WHERE id_usuario = ?', userId, (err, result) => {
     if (err) throw err;
     console.log('Partida encontrada:', result);
     res.send(result);
   });
 });
+
+router.get('/ranking', (req, res) => {
+  console.log('Solicitud de ranking recibida');
+  connection.query('SELECT u.nombre, AVG(p.puntos) AS avg_puntos FROM usuario AS u INNER JOIN partida AS p ON u.id = p.id_usuario GROUP BY u.nombre ORDER BY avg_puntos DESC LIMIT 5 ', (err, result) => {
+    if (err) throw err;
+    res.send(result);
+  });
+} );
 
 
 

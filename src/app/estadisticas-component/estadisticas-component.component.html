@@ -1,24 +1,33 @@
 <div style="text-align: center;">
-    <h1>Estadísticas del Jugador</h1>
-  
-    <div style="display: flex; justify-content: space-around; margin-top: 20px;">
-      <!-- <div>
-        <h3>Gráfico de Barras (Puntos por Fechas)</h3>
-        <canvas id="bar-canvas" width="300" height="300"></canvas>
-      </div>
-  
-      <div>
-        <h3>Gráfico de Línea (Puntos por Fechas)</h3>
-        <canvas id="line-canvas" width="300" height="300"></canvas>
-      </div> -->
-      <div>
-        <h3>Gráfico de Línea + Barras</h3>
-        <canvas id="mixed-canvas" width="300" height="300"></canvas>
-      </div>
-      <div>
-        <h3>Número de Partidas por Rango de Puntos</h3>
+  <h1>Estadísticas del Jugador</h1>
+
+  <div style="margin-top: 40px;">
+    <div style="margin-bottom: 40px; ">
+      <h3>Gráfico de Línea + Barras</h3>
+      <canvas id="mixed-canvas" width="300" height="80"></canvas>
+    </div>
+    <div style="display: inline-block; vertical-align: top;">
+      <h3>Número de Partidas por Rango de Puntos</h3>
+      <div style="height: 700px; width: 700px;">
         <canvas id="pie-canvas" width="300" height="300"></canvas>
       </div>
     </div>
   </div>
   
+</div>
+
+<div class="ranking-section">
+  <h2 style="text-align: center;">Ranking de Jugadores</h2>
+  <table class="ranking-table">
+    <tr>
+      <th>Posición</th>
+      <th>Jugador</th>
+      <th>Puntos Promedio</th>
+    </tr>
+    <tr *ngFor="let jugador of podiumData; let i = index">
+      <td>{{ i + 1 }}</td>
+      <td>{{ jugador.nombre }}</td>
+      <td>{{ jugador.avg_puntos }}</td>
+    </tr>
+  </table>
+</div>

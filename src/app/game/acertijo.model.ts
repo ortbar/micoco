@@ -6,6 +6,7 @@ export class Acertijo {
   imagen_url: string;
   i_url1: string;
   i_url2: string;
+  i_url3: string; // Nueva propiedad para la tercera imagen
   cancion_url: string
   pregunta: string;
   

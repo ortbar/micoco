@@ -36,6 +36,7 @@ export class DataServiceService {
 
   addUser(user: any): Observable<any> {
     return this.http.post<any>(`${this.apiUrl}/registro`, user);
+    
 
   }
 
@@ -106,10 +107,11 @@ export class DataServiceService {
         }),
         tap((response) => {
           if (response.success) {
-            this.router.navigate(['dashboard']);
+            this.router.navigate(['usuarios']);
             this.getUsuarios().subscribe(users => {
               users.push(user);
               this.userRegistered.next();
+              
               
             } );
           }

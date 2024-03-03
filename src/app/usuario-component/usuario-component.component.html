@@ -5,11 +5,9 @@
 
       <label for="nombre" class="form-label">Nombre</label>
       <input type="text" id="nombre" class="form-control" formControlName="nombre" required>
-      <div *ngIf="usuarioForm.get('nombre')?.touched && usuarioForm.get('nombre')?.hasError('required')" class="error-message">
-        Nombre es obligatorio.
-      </div>
-      <div *ngIf="usuarioForm.get('nombre')?.touched" class="error-message">
-        El nombre esta mal
+      <div *ngIf="usuarioForm.get('nombre')?.invalid && (usuarioForm.get('nombre')?.dirty || usuarioForm.get('nombre')?.touched)">
+        <div *ngIf="usuarioForm.get('nombre')?.errors?.['required']" class="error-message">El nombre es obligatorio.</div>
+        <div *ngIf="usuarioForm.get('nombre')?.errors?.['pattern']" class="error-message">El nombre debe tener exactamente 6 caracteres alfanuméricos.</div>
       </div>
       
 
@@ -18,9 +16,7 @@
       <div *ngIf="usuarioForm.get('email')?.hasError('pattern')" class="error-message">
         Debe ser una dirección de correo electrónico válida que termine en &#64;gmail.com.
       </div>
-      <div *ngIf="usuarioForm.get('email')?.touched" class="error-message">
-        No se
-      </div>
+    
    
       <label for="contrasena" class="form-label">Contraseña</label>
       <input type="password" id="contrasena" class="form-control" formControlName="contrasena" required>

@@ -20,6 +20,9 @@ export class EstadisticasComponentComponent implements AfterViewInit {
   conf2: any;
   conf3: any;
   conf4: any;
+  conf5: any;
+  podiumData: any;
+  
 
   ngAfterViewInit() {
     let uid = parseInt(localStorage.getItem('id') ?? '');
@@ -28,11 +31,14 @@ export class EstadisticasComponentComponent implements AfterViewInit {
     }
     this.userId = uid;
     this.getPartidasUser();
+    this.getranking();
   }
 
   volverHome() {
     this.router.navigate(['']);
   }
+
+  
 
   getPartidasUser() {
     this.serve.getPartidasUserID(this.userId.toString()).subscribe((p) => {
@@ -41,6 +47,7 @@ export class EstadisticasComponentComponent implements AfterViewInit {
       this.conf2 = this.estadisticaPartidasUsuarioLineal();
       this.conf3 = this.estadisticaPartidasUsuarioPie();
       this.conf4 = this.estadisticaPartidasUsuarioMixed();
+     
       this.showEstadisticas();
     });
   }
@@ -48,7 +55,7 @@ export class EstadisticasComponentComponent implements AfterViewInit {
   estadisitcaPartidasUsuario() {
     const data = this.partidasUsuario.map((p) => {
       return [
-        new Date(p.fecha).getDate() + '/' + new Date(p.fecha).getMonth() + '/' + new Date(p.fecha).getFullYear(),
+        new Date(p.fecha).getDate() + '/' + (new Date(p.fecha).getMonth() + 1) + '/' + new Date(p.fecha).getFullYear(),
         p.puntos
       ];
     });
@@ -94,7 +101,7 @@ export class EstadisticasComponentComponent implements AfterViewInit {
   estadisticaPartidasUsuarioLineal() {
     const data = this.partidasUsuario.map((p) => {
       return [
-        new Date(p.fecha).getDate() + '/' + new Date(p.fecha).getMonth() + '/' + new Date(p.fecha).getFullYear(),
+        new Date(p.fecha).getDate() + '/' + (new Date(p.fecha).getMonth() + 1) + '/' + new Date(p.fecha).getFullYear(),
         p.puntos
       ];
     });
@@ -105,7 +112,7 @@ export class EstadisticasComponentComponent implements AfterViewInit {
     return {
       type: 'line',
       data: {
-        labels: fechas,
+        labels: 'puntos',
         datasets: [
           {
             label: 'Puntos',
@@ -129,13 +136,10 @@ export class EstadisticasComponentComponent implements AfterViewInit {
         }
       },
     };
-
   }
 
   estadisticaPartidasUsuarioPie() {
-    const data = this.partidasUsuario.map((p) => {
-      return p.puntos;
-    });
+    const data = this.partidasUsuario.map((p) => p.puntos);
 
     const puntosNegativos = data.filter((d) => d < 0).length;
     const puntosPostivos025 = data.filter((d) => d >= 0 && d <= 25).length;
@@ -170,31 +174,37 @@ export class EstadisticasComponentComponent implements AfterViewInit {
             position: 'top',
           },
           title: {
-            display: true,
+            display: false,
             text: 'Distribución de Puntos por Rango'
           }
         }
       },
     };
-
   }
 
   estadisticaPartidasUsuarioMixed() {
     const data = this.partidasUsuario.map((p) => {
-      return [
-        new Date(p.fecha).getDate() + '/' + new Date(p.fecha).getMonth() + '/' + new Date(p.fecha).getFullYear(),
-        p.puntos
-      ];
+      return {
+        fecha: new Date(p.fecha),
+        puntos: p.puntos
+      };
     });
 
-    const fechas = data.map((d) => d[0]);
-    const puntos = data.map((d) => d[1]);
+    const groupedData: { [week: string]: number } = {};
+    data.forEach(curr => {
+        const week = this.getWeekRange(curr.fecha); // Obtener el rango de fechas de la semana
+        groupedData[week] = (groupedData[week] || 0) + curr.puntos;
+    });
+
+    // Obtener las etiquetas de las semanas y los puntos correspondientes
+    const fechas = Object.keys(groupedData);
+    const puntos = Object.values(groupedData);
 
     const d = {
       labels: fechas,
       datasets: [{
         type: 'bar',
-        label: 'Bar Dataset',
+        label: 'puntos',
         data: puntos,
         borderColor: 'rgb(255, 99, 132)',
         backgroundColor: 'rgba(255, 99, 132, 0.2)'
@@ -218,13 +228,45 @@ export class EstadisticasComponentComponent implements AfterViewInit {
         }
       }
     };
+}
 
-  }
+
+getWeekRange(date: Date): string {
+  const startOfWeek = new Date(date.getFullYear(), date.getMonth(), date.getDate() - date.getDay());
+  const endOfWeek = new Date(date.getFullYear(), date.getMonth(), date.getDate() - date.getDay() + 6);
+  return `${this.formatDate(startOfWeek)} - ${this.formatDate(endOfWeek)}`;
+}
+
+// Función para formatear la fecha como "DD/MM/YYYY"
+formatDate(date: Date): string {
+  const day = date.getDate().toString().padStart(2, '0');
+  const month = (date.getMonth() + 1).toString().padStart(2, '0');
+  const year = date.getFullYear().toString();
+  return `${day}/${month}/${year}`;
+}
+
+
+getranking() {
+  this.serve.getranking().subscribe((rankingData: Partida[]) => {
+    // Ordenar el ranking de mayor a menor
+    this.podiumData = rankingData.slice(0, 5);
+  });
+}
+
+
+
+
+
+
+
+  
 
   showEstadisticas() {
     // let chart = new Chart('bar-canvas', this.conf);
     // let chart2 = new Chart('line-canvas', this.conf2);
     let chart3 = new Chart('pie-canvas', this.conf3);
     let chart4 = new Chart('mixed-canvas', this.conf4);
+   
+    
   }
 }

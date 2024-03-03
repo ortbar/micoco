@@ -1,65 +1,50 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+<div class="container">
+  <h1 class="pregunta">Puntuación actual: {{ puntuacion }}</h1>
+  <h1>{{ acertijoActual.pregunta }}</h1>
 
-    <div class="container">
-        <h1>Puntsción actual: {{puntuacion}}</h1>
-        <h1>{{acertijoActual.pregunta}}</h1>
-        <div class="images">
-          <div class="image-container">
-            <img [src]="this.acertijoActual.i_url2" alt="Imagen 1">
-          </div>
-          <div class="image-container">
-            <img [src]="this.acertijoActual.i_url1" alt="Imagen 2">
-          </div>
-        </div>
-      
-        <input type="text" class="form-control form-control-lg" [(ngModel)]="respuesta" >
-        <p id="mensaje-solucion" style="display: none;"> {{ mensaje }}</p>
-        
-       
-        <!-- Button trigger modal -->
-        <div class="button-container">
-          <!-- Button trigger modal -->
-          <button type="button"  (click)="verificarRespuesta()">
-            Comprobar
-          </button>
-          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-            Pista
-          </button>
+  <!-- Mostrar las imágenes -->
+  <div class="images">
+      <div class="image-container">
+          <img [src]="acertijoActual.i_url1" alt="Imagen 1">
       </div>
+      <div class="image-container" *ngIf="acertijoActual.i_url2">
+          <img [src]="acertijoActual.i_url2" alt="Imagen 2">
       </div>
+      <div class="image-container" *ngIf="acertijoActual.i_url3">
+          <img [src]="acertijoActual.i_url3" alt="Imagen 3">
+      </div>
+  </div>
 
+  <input type="text" class="form-control form-control-lg" [(ngModel)]="respuesta">
+  <p id="mensaje-solucion" style="display: none;">{{ mensaje }}</p>
 
-
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Pista</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        {{acertijoActual.pista}}
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-      </div>
-    </div>
+  <!-- Botones para comprobar y mostrar la pista -->
+  <div class="button-container">
+      <button type="button" (click)="verificarRespuesta()">Comprobar</button>
+      <button type="button" class="btn btn-primary" id="pista" data-bs-toggle="modal" data-bs-target="#exampleModal">Pista</button>
   </div>
 </div>
 
+<!-- Modal para mostrar la pista -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">Pista</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+              {{ acertijoActual.pista }}
+          </div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          </div>
+      </div>
+  </div>
+</div>
+
+<!-- Sección para mostrar la puntuación final y el botón de reinicio -->
 <div id="finPartida" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center;">
-  <h1>¡Felicidades, has terminado todos los acertijos! <br> Su puntuación final ha sido de {{this.puntuacion}} {{this.puntuacion == 1 || this.puntuacion == -1 ? 'punto' : 'puntos'}}</h1>
+  <h1>¡Felicidades, has terminado todos los acertijos! <br> Tu puntuación final ha sido de {{ puntuacion }} {{ puntuacion == 1 || puntuacion == -1 ? 'punto' : 'puntos' }}</h1>
   <button class="btn btn-primary" id="reiniciarJuego" (click)="redirect()">Inicio</button>
 </div>
-    
-</body>
-</html>
-

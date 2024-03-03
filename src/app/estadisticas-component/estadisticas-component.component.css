@@ -1,3 +1,38 @@
-body {
-    background: #ecf0f3;
-  }
+/* Estilo para el contenedor principal */
+.container {
+  text-align: center;
+  margin-top: 20px;
+}
+
+/* Estilo para la tabla de ranking */
+.ranking-section {
+  margin: 40px auto; /* Centra la tabla horizontalmente */
+  width: 75%;
+}
+
+/* Resto de estilos para la tabla de ranking */
+.ranking-table {
+  border-collapse: collapse;
+  border: 1px solid #ddd;
+  background-color: #fff;
+  width: 100%; /* Ajusta el ancho al 100% */
+}
+
+.ranking-table th,
+.ranking-table td {
+  padding: 8px;
+  text-align: center;
+}
+
+.ranking-table th {
+  background-color: #f2f2f2;
+  border-top: 1px solid #ddd;
+}
+
+.ranking-table tr:nth-child(odd) {
+  background-color: #f9f9f9;
+}
+
+.ranking-table tr:hover {
+  background-color: #f2f2f2;
+}

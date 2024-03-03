@@ -33,7 +33,7 @@ export class GameComponent {
  respuesta:string="";
   mensaje:string="";
   puntuacion:number=0;
-  limitAcertijos:number=2;
+  limitAcertijos:number=10;
 
 
 
@@ -132,6 +132,7 @@ export class GameComponent {
       this.acertijoActual = this.acertijos[0]; // Comienza con el primer acertijo
       this.acertijoActual.i_url1=this.acertijoActual.imagen_url.split(";")[0];
       this.acertijoActual.i_url2=this.acertijoActual.imagen_url.split(";")[1];
+      this.acertijoActual.i_url3=this.acertijoActual.imagen_url.split(";")[2];
       this.cd.detectChanges();  
 
             
@@ -188,8 +189,16 @@ export class GameComponent {
       
     nuevaPartida.puntos = this.puntuacion;
     nuevaPartida.fecha = new Date(); // Fecha actual
+    nuevaPartida.id_juego = 1; // ID del juego de acertijos
 
     //hay que parsear el id de usuario a entero ya que localstorage devuelve un string
+    let juegoId = '1';
+    if (!juegoId) {
+      console.error('No se encontró el ID del juego');
+      return;
+    }
+
+
     let userId = localStorage.getItem('id');
 
     if (!userId) {
@@ -198,6 +207,7 @@ export class GameComponent {
     }
 
     nuevaPartida.id_usuario = parseInt(userId);
+    nuevaPartida.id_juego = parseInt(juegoId);
   
     // Guardar la nueva partida
     this.partida.enviarPartida(nuevaPartida).subscribe(() => {

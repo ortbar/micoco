@@ -39,7 +39,7 @@ export class UsuarioComponentComponent {
     });
   } 
 
- addUser() {
+  addUser() {
     if (this.usuarioForm.invalid) {
       this.mensajeErrorSubscribe = 'Por favor, rellene el formulario correctamente.';
       return;
@@ -47,9 +47,14 @@ export class UsuarioComponentComponent {
   
     this.servicio.addUser(this.usuarioForm.value).subscribe((data: any) => {
       if (data) {
+        // Agregar el nuevo usuario a la lista después de recibir la respuesta del servidor
         this.usuarios.push(data);
         this.usuarioForm.reset();
         this.mensajeErrorSubscribe = '';
+        this.servicio.getUsuarios().subscribe((data: any) => {  
+          this.usuarios = data;
+        } );
+
       } else {
         this.mensajeErrorSubscribe = 'Error al añadir usuario. Por favor, intenta de nuevo.';
       }

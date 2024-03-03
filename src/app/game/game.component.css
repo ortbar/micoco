@@ -1,3 +1,8 @@
+* {
+  box-sizing: border-box; /* Hace que el padding y el borde no afecten al ancho del elemento */
+
+}
+
 body {
   background-color: #e9edf3df; /* Fondo azul transparente */
 }
@@ -16,74 +21,46 @@ body {
   justify-content: center;
   align-items: center;
   width: 80%;
-  max-width: 800px;
+  max-width: 850px;
   margin-bottom: 40px;
 }
 
 .image-container {
-  margin: 0 20px 40px 20px; /* Ajusta el margen entre las imágenes y la parte inferior */
+  margin: 20px; /* Ajusta el margen entre las imágenes */
 }
 
 .image-container img {
-  width: 300px; /* Incrementa el ancho según tus necesidades */
-  height: 225px; /* Incrementa el alto según tus necesidades */
+  width: 350px; /* Incrementa el ancho de las imágenes */
+  height: 470px; /* Incrementa el alto de las imágenes */
   border-radius: 10px;
   object-fit: cover;
-}
-
-input, button {
-  margin: 20px 0;
-}
-
-/* Centra el input y el botón horizontalmente */
-input,
-button {
-  align-self: center;
-}body {
-  background-color: #cccfd3df; /* Fondo azul transparente */
-}
-
-.container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center; /* Centra verticalmente en la pantalla */
-  height: 100vh; /* Hace que el contenedor ocupe el 100% de la altura de la pantalla */
-}
-
-.images {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  width: 80%;
-  max-width: 800px;
-  margin-bottom: 40px;
-}
-
-.image-container {
-  margin: 30px 20px 20px 20px; /* Ajusta el margen entre las imágenes y la parte inferior */
   border: 2.5px solid #000; /* Añade un borde de color negro */
-  border-radius: 10px; /* Redondea los bordes del contenedor */
-  overflow: hidden; /* Evita que el borde se superponga al contenido interno */
 }
 
-.image-container img {
-  width: 300px; /* Incrementa el ancho según tus necesidades */
-  height: 225px; /* Incrementa el alto según tus necesidades */
-  border-radius: 10px;
-  object-fit: cover;
+input {
+  width: 500px; /* Reducir la anchura del input */
+  margin-bottom: 10px;
 }
 
-input, button {
-  margin: 10px 0;
-}
-
-/* Centra el input y el botón horizontalmente */
-input,
 button {
-  align-self: center;
-  margin-left: 20px;
+  margin: 10px 10px 10px 10px;
+  padding: 10px 20px;
+  background-color: #4CAF50; /* Color de fondo */
+  color: white; /* Color del texto */
+  border: none; /* Eliminar borde */
+  border-radius: 5px; /* Bordes redondeados */
+  cursor: pointer; /* Cambiar cursor al pasar por encima */
+  transition: background-color 0.3s; /* Transición suave del color de fondo */
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+#pista {
+  background-color: #4f5318; /* Color azul claro */
+  font-family: 'Courier New', Courier, monospace;
+}
+
+button:hover {
+  background-color: #45a049; /* Color de fondo oscuro al pasar el ratón */
 }
 
 #finPartida {
@@ -96,4 +73,14 @@ button {
   background-color: white;
   padding: 20px;
   border-radius: 10px;
+}
+
+button.pista {
+  background-color: rgba(255, 235, 59, 0.8); /* Tono amarillo */
+}
+
+.pregunta {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
 }
