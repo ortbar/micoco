@@ -16,9 +16,20 @@ export class AuthGuard  {
     state: RouterStateSnapshot
   ): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
 
-    const currentRole = this.authService.getUserRole();
+   
+
+  
 
     if (this.authService.isAuthenticated()) {
+      const userRole = this.authService.getUserRole();
+      if (userRole === 'jugador') {
+        return this.router.parseUrl('/index');
+      }
+      
+
+
+
+      
       return true;
     }
 

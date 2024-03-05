@@ -13,20 +13,23 @@ import { AcertijosComponentComponent } from './acertijos-component/acertijos-com
 import { UpdateAcertijoComponent } from './update-acertijo/update-acertijo.component';
 import { JuegosComponent } from './juegos/juegos.component';
 import { UsuarioComponentComponent } from './usuario-component/usuario-component.component';
+import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
 
 const routes: Routes = [
-  {path:'dashboard', component:HomeComponentComponent},  // se ha desactivado el guard para poder ver el Home
+  {path:'dashboard', component:HomeComponentComponent, canActivate:[AuthGuard]},  // se ha desactivado el guard para poder ver el Home
   { path: 'index', component: IndexComponent },       // se ha desactivado el guard para poder ver el index
-  { path: 'game', component: GameComponent, canActivate: [AuthGuard] },
-  { path: 'usuarios', component: UsuarioComponentComponent},
-  {path: 'acertijos', component:AcertijosComponentComponent},
+  { path: 'game', component: GameComponent  },
+  { path: 'usuarios', component: UsuarioComponentComponent, canActivate:[AuthGuard]},
+  {path: 'acertijos', component:AcertijosComponentComponent, canActivate:[AuthGuard]},
   { path: 'estadisticas', component: EstadisticasComponentComponent },
-  { path: 'actualiza-usuario/:id', component: ActualizaComponentComponent },
+  { path: 'actualiza-usuario/:id', component: ActualizaComponentComponent, canActivate:[AuthGuard]},
   { path: 'registro', component: RegistroComponentComponent},
   { path: '', component: LoginComponentComponent},
-  { path: 'actualiza-acertijo/:id',component: UpdateAcertijoComponent},
-  { path: 'juegos', component: JuegosComponent},
-  { path: 'actualiza-juego/:id', component: JuegosComponent}
+  { path: 'actualiza-acertijo/:id',component: UpdateAcertijoComponent, canActivate:[AuthGuard]},
+  { path: 'juegos', component: JuegosComponent, canActivate:[AuthGuard]},
+  { path: 'actualiza-juego/:id', component: JuegosComponent, canActivate:[AuthGuard]},
+  { path: 'unauthorized', component: UnauthorizedComponent}
+  
   
 
 

@@ -24,6 +24,8 @@ export class AuthService {
     return !this.jwtHelper.isTokenExpired(token);
   }
 
+  
+
   public setToken(token: string): void {
     localStorage.setItem('token', token);
   }

@@ -19,6 +19,7 @@ import { CommonModule } from '@angular/common';
 import { GameComponent } from './game/game.component';
 import { AcertijosService } from './acertijos.service';
 import { JuegoServiceService } from './juego-service.service';
+import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
 
 
 import { AcertijosComponentComponent } from './acertijos-component/acertijos-component.component';
@@ -40,6 +41,10 @@ import { PartidaService } from './partida.service';
       HomeComponentComponent,
       GameComponent,
       JuegosComponent,
+      
+
+      
+      
     ],
     imports: [
       CommonModule,

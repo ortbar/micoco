@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { AuthService } from './auth.service';
 import { Router } from '@angular/router';
+import { PartidaService } from './partida.service';
 
 
 @Component({
@@ -10,7 +11,8 @@ import { Router } from '@angular/router';
 })
 export class AppComponent {
 
-  constructor(public authService: AuthService, private router: Router) {}
+  constructor(public authService: AuthService, private router: Router,private partida:PartidaService) {}
+  userRole = this.authService.getUserRole();
 
   // title = 'Cocowin'; 
   
@@ -32,10 +34,15 @@ export class AppComponent {
     return this.authService.getUserRole() === 'admin';
   }
 
+  esJugador(): boolean {  
+
+    return this.authService.getUserRole() === 'jugador';
+  }
+
 
 
   ngOnInit() {
-    // this.getUsuarios();
+    this.userRole = this.authService.getUserRole();
   }
 
   // getUsuarios() {
