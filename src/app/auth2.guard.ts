@@ -7,7 +7,7 @@ import { User } from './login-component/auth.interface';
 @Injectable({
   providedIn: 'root',
 })
-export class AuthGuard  {
+export class AuthGuard2  {
 
   constructor(private authService: AuthService, private router: Router) {}
 
@@ -17,18 +17,10 @@ export class AuthGuard  {
   ): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
   
 
-    if (this.authService.isAuthenticated()) {
-      console.log('entra');
-      const userRole = this.authService.getUserRole();
-      if (userRole === 'jugador') {
-        return this.router.parseUrl('/index');
-      }
-      
-      return true;
-    }else{
-      return this.router.parseUrl('/unauthorized');
-
+    if (!this.authService.isAuthenticated()) {
+      return this.router.parseUrl('');
     }
+    return true
   }
 
   

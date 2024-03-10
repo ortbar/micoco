@@ -1,19 +1,25 @@
 body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
   margin: 0;
-  /* background-image: url('ruta/a/tu/imagen.jpg');  */
-  background-size: cover;
-  background-position: center;
 }
 
-.container {
+/* .background-image {
+  background-image: url('ruta/a/tu/imagen.jpg'); 
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+} */
+
+.container {
+  text-align: center;
+}
+
+.content {
+  background-color: rgba(255, 255, 255, 0.8); /* Cambia a cualquier color RGBA que prefieras */
+  padding: 20px;
+  border-radius: 10px;
 }
 
 .start-button {
@@ -23,17 +29,17 @@ body {
   border: none;
   cursor: pointer;
   background-color: rgba(0, 0, 0, 0.5); /* Cambia a cualquier color RGBA que prefieras */
-  margin-top: 50px;
+  margin-top: 20px;
   border-radius: 15px;
-  transform: translateY(-75px); /* Mueve el botón 20px hacia arriba */
-  background-image: src('./assets/images/numeropi.jpg');
 }
 
 .start-button:hover {
   background-color: rgba(0, 0, 0, 0.7); /* Cambia a cualquier color RGBA que prefieras */
 }
 
-
+h1, h3 {
+  margin-top: 0;
+}
 
 a {
   text-decoration: none;

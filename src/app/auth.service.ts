@@ -80,10 +80,16 @@ export class AuthService {
     return this.http.post<Token>(`${this.apiUrl}/iniciar-sesion`, credentials)
       .pipe(
         tap(() => {
-         
           this.router.navigate(['index']);
         }),
-        tap(() => this.router.navigate(['index']))
+        catchError((error: any) => {
+          console.error('Error en inicio de sesión:', error);
+          let errorMessage = 'Error en el inicio de sesión. Por favor, inténtalo de nuevo.';
+          if (error.status === 401) {
+            errorMessage = 'Credenciales incorrectas. Por favor, inténtalo de nuevo.';
+          }
+          return throwError(errorMessage);
+        })
       );
   }
 
@@ -94,6 +100,19 @@ export class AuthService {
     this.router.navigate(['']);
   }
 
+  mostrarMensaje: boolean = true;
+
+  // aceptarCookies() {
+  //   // Aquí deberías crear una cookie de aceptación de la política de cookies
+  //   // Por simplicidad, vamos a usar localStorage en este ejemplo
+  //   localStorage.setItem('politicaCookiesAceptada', 'true');
+  //   this.mostrarMensaje = false;
+  // }
+
+  // cookieAceptada(): boolean {
+  //   // Verifica si la cookie de aceptación de la política de cookies existe
+  //   return localStorage.getItem('politicaCookiesAceptada') === 'true';
+  // }
 
 
 }

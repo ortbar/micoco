@@ -1,66 +1,64 @@
-* {
-  box-sizing: border-box; /* Hace que el padding y el borde no afecten al ancho del elemento */
-
-}
-
-body {
-  background-color: #e9edf3df; /* Fondo azul transparente */
-}
-
 .container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center; /* Centra verticalmente en la pantalla */
-  height: 100vh; /* Hace que el contenedor ocupe el 100% de la altura de la pantalla */
+}
+
+.titulo {
+  margin-top: 40px;
+}
+
+.acertijo {
+  text-align: center;
+  margin-bottom: 20px;
 }
 
 .images {
   display: flex;
-  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  width: 80%;
-  max-width: 850px;
-  margin-bottom: 40px;
+  margin-bottom: 20px;
 }
 
 .image-container {
-  margin: 20px; /* Ajusta el margen entre las imágenes */
+  margin: 0 12px;
+  border-radius: 10px; /* Agregar bordes redondeados */
+  overflow: hidden; /* Evitar que las imágenes sobresalgan del contenedor */
 }
 
 .image-container img {
-  width: 350px; /* Incrementa el ancho de las imágenes */
-  height: 470px; /* Incrementa el alto de las imágenes */
-  border-radius: 10px;
+  width: 300px;
+  height: 300px;
   object-fit: cover;
-  border: 2.5px solid #000; /* Añade un borde de color negro */
-}
-
-input {
-  width: 500px; /* Reducir la anchura del input */
-  margin-bottom: 10px;
 }
 
 button {
-  margin: 10px 10px 10px 10px;
+  margin: 10px;
+}
+
+h2 {
+  margin-bottom: 50px;
+}
+
+
+.button-container {
+  margin-top: 20px;
+}
+
+button.comprobar {
+  margin: 10px;
   padding: 10px 20px;
-  background-color: #4CAF50; /* Color de fondo */
-  color: white; /* Color del texto */
-  border: none; /* Eliminar borde */
-  border-radius: 5px; /* Bordes redondeados */
-  cursor: pointer; /* Cambiar cursor al pasar por encima */
-  transition: background-color 0.3s; /* Transición suave del color de fondo */
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
-#pista {
-  background-color: #4f5318; /* Color azul claro */
-  font-family: 'Courier New', Courier, monospace;
-}
-
-button:hover {
-  background-color: #45a049; /* Color de fondo oscuro al pasar el ratón */
+button.comprobar:hover {
+  background-color: #45a049;
 }
 
 #finPartida {
@@ -70,17 +68,12 @@ button:hover {
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
-  background-color: white;
   padding: 20px;
   border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.9); /* Fondo blanco con opacidad */
+  backdrop-filter: blur(5px); /* Efecto de desenfoque en el fondo */
 }
 
-button.pista {
-  background-color: rgba(255, 235, 59, 0.8); /* Tono amarillo */
-}
-
-.pregunta {
-  font-size: 20px;
-  font-weight: bold;
-  margin-bottom: 10px;
+#finPartida h1 {
+  margin-bottom: 20px;
 }

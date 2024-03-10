@@ -15,13 +15,20 @@ export class LoginComponentComponent {
   loginForm: FormGroup;
   mensajeError: string="";
 
-  constructor(private fb: FormBuilder, private servicio :AuthService,router:Router ) {}
+  constructor(private fb: FormBuilder, private servicio :AuthService, private router:Router ) {}
 
   ngOnInit(): void {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email,]],
       contrasena: ['', [Validators.required, ]]
     });
+    this.redirectIfAuthenticated();
+  }
+
+  redirectIfAuthenticated() {
+    if (this.servicio.isAuthenticated()) {
+      this.router.navigate(['/index']);
+    }
   }
   
  iniciarSesion() {
@@ -31,7 +38,9 @@ export class LoginComponentComponent {
     const email = this.loginForm.get('email')?.value;
     const contrasena = this.loginForm.get('contrasena')?.value;
 
-    console.log(email,contrasena, "here")
+    if (this.loginForm.invalid) {
+      return;
+    }
 
     this.servicio.iniciarSesion(email, contrasena).subscribe({
       
@@ -40,6 +49,7 @@ export class LoginComponentComponent {
         this.servicio.setToken(response.token);
         this.servicio.setUser(response.user);
         console.log('Inicio de sesión exitoso');
+        this.router.navigate(['/index']);
       },
       error: (error: any) => {
         this.mensajeError = 'Credenciales incorrectas. Por favor, inténtalo de nuevo.';

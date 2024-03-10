@@ -146,6 +146,7 @@ router.post('/iniciar-sesion', async (req, res) => {
     const { email, contrasena } = req.body;
     console.log('Antes de la consulta a la base de datos');
     // Realiza la consulta para obtener el usuario con el email dado desde la base de datos
+    console.log('SELECT * FROM usuario WHERE email = ?', [email]);
     connection.query('SELECT * FROM usuario WHERE email = ?', [email], async (err, results) => {
       console.log('Después de la consulta a la base de datos');
       
@@ -154,9 +155,7 @@ router.post('/iniciar-sesion', async (req, res) => {
         return res.status(500).json({ mensaje: 'Error interno del servidor' });
       }
 
-      console.log(results)
-
-      if (results[0].length === 0) {
+      if (results.length === 0) {
         console.log('Usuario no encontrado');
         return res.status(401).json({ mensaje: 'Credenciales incorrectas' });
       }

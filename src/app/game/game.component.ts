@@ -33,7 +33,8 @@ export class GameComponent {
  respuesta:string="";
   mensaje:string="";
   puntuacion:number=0;
-  limitAcertijos:number=10;
+  limitAcertijos:number=2;
+  bienvenidas = "";
 
 
 
@@ -52,6 +53,7 @@ export class GameComponent {
   ngOnInit() {
 
     this.getAcertijos();
+   
    
 ; 
   }
@@ -122,6 +124,10 @@ export class GameComponent {
     // Limpiar la respuesta del jugador
     this.respuesta = '';
   }
+
+  // ocultarNav(): boolean {
+  //   return this.auth.isAuthenticated();
+  // }
 
 
 

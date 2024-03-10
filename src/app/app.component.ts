@@ -27,7 +27,7 @@ export class AppComponent {
   // usuarios: Usuario[] = [];
 
   ocultarNav(): boolean {
-    return !this.authService.isAuthenticated();
+    return !this.authService.isAuthenticated() || this.router.url.includes('/game');
   }
 //usar en el html principal para mostrar u ocultar contenido segúh el rol
   isAdmin(): boolean {

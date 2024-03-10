@@ -14,8 +14,19 @@ import { AuthService } from '../auth.service';
 export class IndexComponent {
 
   constructor(private router: Router, private serv:AuthService) { }
-
+  bienvenidas: string = "";
   userRole = this.serv.getUserRole();
+
+  
+  bienvenida () {
+    this.bienvenidas = localStorage.getItem('nombre')? "Bienvenido " + localStorage.getItem('nombre') : "Bienvenido";
+    
+  }
+
+  ngOnInit(): void {
+    this.bienvenida();
+    this.userRole = this.serv.getUserRole();
+  }
 
   comenzarJuego() {
     this.router.navigate(['/game']);

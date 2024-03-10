@@ -204,7 +204,7 @@ export class EstadisticasComponentComponent implements AfterViewInit {
       labels: fechas,
       datasets: [{
         type: 'bar',
-        label: 'puntos',
+        label: 'Bardataset ',
         data: puntos,
         borderColor: 'rgb(255, 99, 132)',
         backgroundColor: 'rgba(255, 99, 132, 0.2)'

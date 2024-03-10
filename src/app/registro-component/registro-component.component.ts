@@ -28,7 +28,15 @@ export class RegistroComponentComponent {
       email: ['', [Validators.required, Validators.email, Validators.pattern(/[a-zA-Z0-9._%+-]+@gmail\.com$/)]],
       contrasena: ['', [Validators.required, Validators.minLength(6), Validators.pattern(/^(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]+$/)]],
     });
+    this.redirectIfAuthenticated();
   }
+
+  redirectIfAuthenticated() {
+    if (this.autserv.isAuthenticated()) {
+      this.router.navigate(['/index']);
+    }
+  }
+
   registrar() {
     if (this.registroForm.valid) {
 
@@ -40,22 +48,23 @@ export class RegistroComponentComponent {
         next: (response) => {
           if (response.success) {
             // Authenticate the user after successful registration
-            this.autserv.iniciarSesion(email, contrasena).subscribe({
-              next: () => {
-                // No need to do anything here, AuthService already redirects the user
-              },
-              error: (error) => {
-                // Handle authentication error here
-                console.error('Error al iniciar sesión:', error);
-              }
-            });
+            // this.autserv.iniciarSesion(email, contrasena).subscribe({
+            //   next: () => {
+            //     // No need to do anything here, AuthService already redirects the user
+            //   },
+            //   error: (error) => {
+            //     // Handle authentication error here
+            //     console.error('Error al iniciar sesión:', error);
+            //   }
+            // });
             console.log(response.mensaje);
-  
+
+            this.router.navigate(['/']); 
             // Add the new user to the list of users
-            this.servicio.getUsuarios().subscribe(users => {
-              users.push(newUser);
-              this.cdr.detectChanges(); // Activar manualmente la detección de cambios
-            });
+            // this.servicio.getUsuarios().subscribe(users => {
+            //   users.push(newUser);
+            //   this.cdr.detectChanges(); // Activar manualmente la detección de cambios
+            // });
           } else {
             console.error('Error al registrar usuario:', response.mensaje);
             this.mensajeError = response.mensaje;
@@ -75,19 +84,7 @@ export class RegistroComponentComponent {
     }
   }
 
-  /*addJuego() {
-    if (this.juegoForm.valid) {
-      this.servicio.addJuego(this.juegoForm.value).subscribe(juego => {
-        this.juegos.push(juego);
-        this.juegoForm.reset();
-        this.servicio.getJuegos().subscribe(juegos => this.juegos = juegos);
-      });
-    } else {
-      // Puedes agregar aquí cualquier acción que quieras realizar cuando el formulario no es válido.
-      // Por ejemplo, podrías mostrar un mensaje de error al usuario.
-      this.errorMessage = 'Por favor, rellena todos los campos requeridos.';
-    }
-  } */
+
 
 
   }
