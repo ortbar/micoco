@@ -41,3 +41,8 @@ h1 {
   margin-top: 30px;
   color: rgb(97, 17, 225);
 }
+
+canvas {
+  max-width: 100% !important;
+  height: auto !important;
+}

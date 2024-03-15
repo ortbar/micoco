@@ -1,27 +1,41 @@
-# Micoco
+# Cocowin
+Cocowin es una aplicación web interactiva que ofrece una variedad de juegos de acertijos cognitivos para entretener a usuarios de todas las edades. Diseñada como parte de mi proyecto de graduación como Jr. Web Developer, surge de mi interés por el desarrollo web y el deseo de aplicar mis conocimientos adquiridos durante mi formación. 
+Aunque inicialmente he desarrollado un juego, como "Adivina el Personaje", esta plataforma está preparada para incluir más juegos cognitivos en el futuro. 
+Este juego inicial está diseñado para estimular la creatividad y la agudeza mental, ofreciendo a los usuarios una experiencia de entretenimiento educativa y gratificante.
+ La aplicación presenta dos roles de usuario distintos: jugadores individuales que buscan desafiar sus propias habilidades cognitivas, así como jugadores/administradores.
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.5.
 
-## Development server
+## Manual de Instalación de Cocowin
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Para comenzar a utilizar Cocowin, sigue estos sencillos pasos:
 
-## Code scaffolding
+### 1. Descargar el proyecto
+Puedes obtener el código de Cocowin desde el repositorio en GitHub. Dirígete a [este enlace](https://github.com/ortbar/micoco.git) y descarga el proyecto.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+### 2. Instalar Node.js
+Asegúrate de tener Node.js instalado en tu sistema. Si no lo tienes, puedes descargarlo e instalarlo desde [este enlace](https://nodejs.org/en/download/current).
 
-## Build
+### 3. Instalar dependencias
+Desde la carpeta raíz del proyecto y la carpeta `src/backend`, ejecuta `npm install` para instalar todas las dependencias necesarias.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+### 4. Descargar e instalar MariaDB
+Descarga e instala MariaDB en tu sistema. Se recomienda utilizar XAMPP, que facilita este proceso.
 
-## Running unit tests
+### 5. Crear la base de datos
+Crea una base de datos llamada `neurodiver` en tu servidor MariaDB. Puedes utilizar cualquier herramienta de administración de bases de datos o la interfaz web proporcionada por XAMPP (phpMyAdmin) para este fin.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+### 6. Alimentar la base de datos
+Ejecuta el script `alimentarBD.sql`, ubicado en `src/backend`, en tu base de datos recién creada. Este script creará las tablas necesarias y llenará la base de datos con datos de ejemplo.
 
-## Running end-to-end tests
+### 7. Configurar la conexión a la base de datos
+En el archivo `index.js` dentro de la carpeta `src/backend`, encontrarás la constante `connection`, que contiene los parámetros de conexión a la base de datos. Asegúrate de modificar estos parámetros según tu configuración.
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+### 8. Lanzar el servidor y el cliente
+- Ejecuta el servidor ejecutando `node src/backend/index.js`.
+- Inicia el cliente ejecutando `ng server -o`. Esta opción abrirá automáticamente el navegador predeterminado.
 
-## Further help
+Una vez completados estos pasos, podrás acceder a Cocowin utilizando las siguientes credenciales:
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+- **Email**: alexx2@gmail.com (administrador) o aleii8@gmail.com (jugador)
+- **Contraseña**: 12345@
+
